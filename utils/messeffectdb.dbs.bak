@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="hermessys" id="Project_142a559" template="Default" database="PostgreSQL" >
+	<schema name="messeffect" >
+		<table name="acao" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="codigo" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="descricao" type="varchar" length="100" jt="12" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_permissao_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_acao_nome_unique" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+			<index name="idx_acao_codigo_unique" unique="UNIQUE" >
+				<column name="codigo" />
+			</index>
+		</table>
+		<table name="acao_permissao" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="acao_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="permissao_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_acao_permissao_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_acao_id_unique" unique="UNIQUE" >
+				<column name="acao_id" />
+			</index>
+			<index name="idx_permissao_id_unique" unique="UNIQUE" >
+				<column name="permissao_id" />
+			</index>
+			<fk name="fk_acao_permissao_acao" to_schema="messeffect" to_table="acao" delete_action="cascade" >
+				<fk_column name="acao_id" pk="id" />
+			</fk>
+			<fk name="fk_acao_permissao_permissao" to_schema="messeffect" to_table="permissao" >
+				<fk_column name="permissao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="conferencia" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="quantidade_anterior" type="bigint" jt="-5" mandatory="y" />
+			<column name="quantidade_informada" type="bigint" jt="-5" mandatory="y" />
+			<column name="valor_anterior" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="valor_informado" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="estoque_local_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="material_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="pessoa_id" type="bigint" jt="-5" mandatory="y" />
+			<index name="pk_conferencia_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_conferencia_estoque_local" to_schema="messeffect" to_table="estoque_local" >
+				<fk_column name="estoque_local_id" pk="id" />
+			</fk>
+			<fk name="fk_conferencia_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_conferencia_material" to_schema="messeffect" to_table="material" >
+				<fk_column name="material_id" pk="id" />
+			</fk>
+		</table>
+		<table name="estoque_local" >
+			<column name="id" type="bigserial" length="50" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="codigo" type="varchar" length="6" jt="12" mandatory="y" />
+			<column name="pessoa_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_estoque_local_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_estoque_local_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="grupo" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_material_grupo_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="historico_compra" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="pessoa_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="material_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="data_compra" type="timestamp" jt="93" mandatory="y" />
+			<column name="data_compra_anterior" type="timestamp" jt="93" mandatory="y" />
+			<column name="preco_antigo" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="preco_novo" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="quantidade_comprada" type="bigint" jt="-5" mandatory="y" />
+			<column name="quantidade_ultima_compra" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_historico_compra_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_historico_compra_material" to_schema="messeffect" to_table="material" >
+				<fk_column name="material_id" pk="id" />
+			</fk>
+			<fk name="fk_historico_compra_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="imagem" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="marca_id" type="bigint" jt="-5" />
+			<column name="material_id" type="bigint" jt="-5" />
+			<column name="locacao_id" type="bigint" jt="-5" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_imagem_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_imagem_marca" to_schema="messeffect" to_table="marca" delete_action="cascade" >
+				<fk_column name="marca_id" pk="id" />
+			</fk>
+			<fk name="fk_imagem_material" to_schema="messeffect" to_table="material" delete_action="cascade" >
+				<fk_column name="material_id" pk="id" />
+			</fk>
+			<fk name="fk_imagem_locacoes" to_schema="messeffect" to_table="locacoes" >
+				<fk_column name="locacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="locacoes" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="quantidade" type="bigint" jt="-5" mandatory="y" />
+			<column name="valor_aluguel" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="is_mensal" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_diaria" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<column name="is_semanal" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="data_locacao" type="timestamp" jt="93" mandatory="y" />
+			<column name="data_devolucao" type="timestamp" jt="93" />
+			<column name="total_aluguel" type="numeric" length="14" decimal="2" jt="2" />
+			<column name="pessoa_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="estoque_local_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_ferramenta_alugada_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_locacoes_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_locacoes_estoque_local" to_schema="messeffect" to_table="estoque_local" >
+				<fk_column name="estoque_local_id" pk="id" />
+			</fk>
+		</table>
+		<table name="marca" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_marca_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="material" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="preco" type="numeric" length="14" decimal="2" jt="2" />
+			<column name="descricao" type="varchar" length="255" jt="12" />
+			<column name="quantidade" type="bigint" jt="-5" mandatory="y" />
+			<column name="barras" type="varchar" length="15" jt="12" />
+			<column name="codigo" type="varchar" length="10" jt="12" />
+			<column name="codigo_interno" type="varchar" length="10" jt="12" mandatory="y" />
+			<column name="marca_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="grupo_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="subgrupo_id" type="bigint" jt="-5" />
+			<column name="estoque_local_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_material_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_material_marca" to_schema="messeffect" to_table="marca" >
+				<fk_column name="marca_id" pk="id" />
+			</fk>
+			<fk name="fk_material_material_grupo" to_schema="messeffect" to_table="grupo" >
+				<fk_column name="grupo_id" pk="id" />
+			</fk>
+			<fk name="fk_material_subgrupo" to_schema="messeffect" to_table="subgrupo" >
+				<fk_column name="subgrupo_id" pk="id" />
+			</fk>
+			<fk name="fk_material_estoque_local" to_schema="messeffect" to_table="estoque_local" >
+				<fk_column name="estoque_local_id" pk="id" />
+			</fk>
+		</table>
+		<table name="material_compra" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="ordem_compra_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="material_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="quantidade" type="bigint" jt="-5" mandatory="y" />
+			<column name="observacoes" type="varchar" length="255" jt="12" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_material_compra_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_material_compra_material" to_schema="messeffect" to_table="material" >
+				<fk_column name="material_id" pk="id" />
+			</fk>
+			<fk name="fk_material_compra_ordem_compra" to_schema="messeffect" to_table="ordem_compra" >
+				<fk_column name="ordem_compra_id" pk="id" />
+			</fk>
+		</table>
+		<table name="material_utilizado" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="material_id" type="bigint" length="50" jt="-5" mandatory="y" />
+			<column name="quantidade" type="bigint" jt="-5" mandatory="y" />
+			<column name="pessoa_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="descricao" type="varchar" length="255" jt="12" mandatory="y" />
+			<column name="observacoes" type="varchar" length="255" jt="12" />
+			<column name="servico_id" type="bigint" jt="-5" />
+			<column name="data_retirada" type="timestamp" jt="93" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_material_utilizado_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_material_utilizado_material" to_schema="messeffect" to_table="material" >
+				<fk_column name="material_id" pk="id" />
+			</fk>
+			<fk name="fk_material_utilizado_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="novo_material" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="descricao" type="varchar" length="255" jt="12" />
+			<column name="ordem_compra_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_novo_material_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_novo_material_ordem_compra" to_schema="messeffect" to_table="ordem_compra" >
+				<fk_column name="ordem_compra_id" pk="id" />
+			</fk>
+		</table>
+		<table name="ordem_compra" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="pessoa_id" type="bigint" jt="-5" />
+			<column name="material_id" type="bigint" jt="-5" />
+			<column name="quantidade" type="bigint" jt="-5" mandatory="y" />
+			<column name="observacoes" type="varchar" length="255" jt="12" />
+			<column name="novo_material_id" type="bigint" length="50" jt="-5" />
+			<column name="estoque_local_id" type="bigint" jt="-5" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_ordem_compra_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_ordem_compra_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_ordem_compra_estoque_local" to_schema="messeffect" to_table="estoque_local" >
+				<fk_column name="estoque_local_id" pk="id" />
+			</fk>
+		</table>
+		<table name="permissao" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="codigo" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="descricao" type="varchar" length="100" jt="12" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_permissao_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_permissao_nome_unique" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+			<index name="idx_permissao_codigo_unique" unique="UNIQUE" >
+				<column name="codigo" />
+			</index>
+		</table>
+		<table name="pessoa" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="cpf" type="varchar" length="11" jt="12" />
+			<column name="cnpj" type="varchar" length="14" jt="12" />
+			<column name="endereco_id" type="bigint" jt="-5" />
+			<column name="contato_id" type="bigint" jt="-5" />
+			<column name="usuario_id" type="bigint" jt="-5" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_pessoa_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="subgrupo" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_subgrupo_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="usuario" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="email" type="varchar" length="40" jt="12" mandatory="y" />
+			<column name="passwor" type="varchar" length="60" jt="12" mandatory="y" />
+			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="pessoa_id" type="integer" jt="4" />
+			<column name="imagem_id" type="bigint" jt="-5" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_usuario_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_usuario_unique" unique="UNIQUE" >
+				<column name="email" />
+			</index>
+			<index name="idx_usuario_pessoa_id" unique="NORMAL" >
+				<column name="pessoa_id" />
+			</index>
+			<fk name="fk_usuario_imagem" to_schema="messeffect" to_table="imagem" >
+				<fk_column name="imagem_id" pk="id" />
+			</fk>
+			<fk name="fk_usuario_pessoa" to_schema="messeffect" to_table="pessoa" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="usuario_acao" >
+			<column name="id" type="bigserial" jt="-5" mandatory="y" />
+			<column name="usuario_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="acao_id" type="bigint" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" jt="93" mandatory="y" >
+				<defo>current_timestamp</defo>
+			</column>
+			<column name="updated_at" type="timestamp" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_usuario_permissao_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_usuario_acao_unique" unique="UNIQUE" >
+				<column name="acao_id" />
+			</index>
+			<index name="idx_usuario_unique_id" unique="UNIQUE" >
+				<column name="usuario_id" />
+			</index>
+			<fk name="fk_usuario_acao_usuario" to_schema="messeffect" to_table="usuario" delete_action="cascade" >
+				<fk_column name="usuario_id" pk="id" />
+			</fk>
+			<fk name="fk_usuario_acao_acao" to_schema="messeffect" to_table="acao" >
+				<fk_column name="acao_id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Conferencia" id="Layout_3756e" show_relation="columns" >
+		<entity schema="messeffect" name="material" color="3986C1" x="48" y="48" />
+		<entity schema="messeffect" name="estoque_local" color="3986C1" x="336" y="48" />
+		<entity schema="messeffect" name="pessoa" color="3986C1" x="544" y="48" />
+		<entity schema="messeffect" name="conferencia" color="3986C1" x="288" y="368" />
+	</layout>
+	<layout name="Locacoes" id="Layout_5aad5f" show_relation="columns" >
+		<entity schema="messeffect" name="estoque_local" color="3986C1" x="288" y="48" />
+		<entity schema="messeffect" name="pessoa" color="3986C1" x="48" y="48" />
+		<entity schema="messeffect" name="imagem" color="3986C1" x="48" y="320" />
+		<entity schema="messeffect" name="locacoes" color="C1D8EE" x="496" y="48" />
+	</layout>
+	<layout name="Material" id="Layout_1b3a1c6" show_relation="columns" >
+		<entity schema="messeffect" name="imagem" color="C1D8EE" x="48" y="464" />
+		<entity schema="messeffect" name="marca" color="C1D8EE" x="48" y="48" />
+		<entity schema="messeffect" name="grupo" color="C1D8EE" x="176" y="512" />
+		<entity schema="messeffect" name="subgrupo" color="C1D8EE" x="304" y="512" />
+		<entity schema="messeffect" name="estoque_local" color="C1D8EE" x="448" y="480" />
+		<entity schema="messeffect" name="pessoa" color="C1D8EE" x="720" y="432" />
+		<entity schema="messeffect" name="historico_compra" color="C1D8EE" x="688" y="48" />
+		<entity schema="messeffect" name="material_utilizado" color="C1D8EE" x="496" y="160" />
+		<entity schema="messeffect" name="material" color="C1D8EE" x="256" y="48" />
+	</layout>
+	<layout name="OrdemDeCompra" id="Layout_ec2814" show_relation="columns" >
+		<entity schema="messeffect" name="material_compra" color="C1D8EE" x="64" y="368" />
+		<entity schema="messeffect" name="novo_material" color="C1D8EE" x="576" y="368" />
+		<entity schema="messeffect" name="material" color="3986C1" x="48" y="48" />
+		<entity schema="messeffect" name="estoque_local" color="3986C1" x="272" y="48" />
+		<entity schema="messeffect" name="pessoa" color="3986C1" x="432" y="48" />
+		<entity schema="messeffect" name="ordem_compra" color="C1D8EE" x="336" y="368" />
+	</layout>
+	<layout name="Usuario" id="Layout_35216f4" show_relation="columns" >
+		<entity schema="messeffect" name="imagem" color="3986C1" x="288" y="48" />
+		<entity schema="messeffect" name="acao" color="C1D8EE" x="400" y="352" />
+		<entity schema="messeffect" name="acao_permissao" color="C1D8EE" x="560" y="352" />
+		<entity schema="messeffect" name="permissao" color="C1D8EE" x="576" y="576" />
+		<entity schema="messeffect" name="usuario" color="C1D8EE" x="48" y="352" />
+		<entity schema="messeffect" name="pessoa" color="3986C1" x="48" y="48" />
+		<entity schema="messeffect" name="usuario_acao" color="C1D8EE" x="240" y="352" />
+	</layout>
+</project>
