@@ -1,0 +1,289 @@
+{
+    "usuario": {
+        "tabela": "usuario",
+        "namespace": "App\\Models",
+        "classe": "Usuario",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Usuario.php",
+        "belongsTo": {
+            "imagem_id": {
+                "coluna": "imagem_id",
+                "metodo": "imagem"
+            },
+            "pessoa_id": {
+                "coluna": "pessoa_id",
+                "metodo": "pessoa"
+            }
+        },
+        "hasMany": {
+            "usuario_acao.usuario_id": {
+                "tabela": "usuario_acao",
+                "coluna": "usuario_id",
+                "metodo": "usuarioAcao"
+            }
+        }
+    },
+    "imagem": {
+        "tabela": "imagem",
+        "namespace": "App\\Models",
+        "classe": "Imagem",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Imagem.php",
+        "belongsTo": {
+            "locacao_id": {
+                "coluna": "locacao_id",
+                "metodo": "locacao"
+            },
+            "marca_id": {
+                "coluna": "marca_id",
+                "metodo": "marca"
+            },
+            "material_id": {
+                "coluna": "material_id",
+                "metodo": "material"
+            }
+        },
+        "hasMany": {
+            "usuario.imagem_id": {
+                "tabela": "usuario",
+                "coluna": "imagem_id",
+                "metodo": "usuario"
+            }
+        }
+    },
+    "pessoa": {
+        "tabela": "pessoa",
+        "namespace": "App\\Models",
+        "classe": "Pessoa",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Pessoa.php",
+        "belongsTo": [],
+        "hasMany": {
+            "conferencia.pessoa_id": {
+                "tabela": "conferencia",
+                "coluna": "pessoa_id",
+                "metodo": "conferencia"
+            },
+            "estoque_local.pessoa_id": {
+                "tabela": "estoque_local",
+                "coluna": "pessoa_id",
+                "metodo": "estoqueLocal"
+            },
+            "historico_compra.pessoa_id": {
+                "tabela": "historico_compra",
+                "coluna": "pessoa_id",
+                "metodo": "historicoCompra"
+            },
+            "locacoes.pessoa_id": {
+                "tabela": "locacoes",
+                "coluna": "pessoa_id",
+                "metodo": "locacoes"
+            },
+            "material_utilizado.pessoa_id": {
+                "tabela": "material_utilizado",
+                "coluna": "pessoa_id",
+                "metodo": "materialUtilizado"
+            },
+            "ordem_compra.pessoa_id": {
+                "tabela": "ordem_compra",
+                "coluna": "pessoa_id",
+                "metodo": "ordemCompra"
+            },
+            "usuario.pessoa_id": {
+                "tabela": "usuario",
+                "coluna": "pessoa_id",
+                "metodo": "usuario"
+            }
+        }
+    },
+    "usuario_acao": {
+        "tabela": "usuario_acao",
+        "namespace": "App\\Models",
+        "classe": "UsuarioAcao",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/UsuarioAcao.php",
+        "belongsTo": {
+            "acao_id": {
+                "coluna": "acao_id",
+                "metodo": "acao"
+            },
+            "usuario_id": {
+                "coluna": "usuario_id",
+                "metodo": "usuario"
+            }
+        },
+        "hasMany": []
+    },
+    "locacoes": {
+        "tabela": "locacoes",
+        "namespace": "App\\Models",
+        "classe": "Locacoes",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Locacoes.php",
+        "belongsTo": [],
+        "hasMany": []
+    },
+    "marca": {
+        "tabela": "marca",
+        "namespace": "App\\Models",
+        "classe": "Marca",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Marca.php",
+        "belongsTo": [],
+        "hasMany": []
+    },
+    "material": {
+        "tabela": "material",
+        "namespace": "App\\Models",
+        "classe": "Material",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Material.php",
+        "belongsTo": [],
+        "hasMany": []
+    },
+    "conferencia": {
+        "tabela": "conferencia",
+        "namespace": "App\\Models",
+        "classe": "Conferencia",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Conferencia.php",
+        "belongsTo": {
+            "estoque_local_id": {
+                "coluna": "estoque_local_id",
+                "metodo": "estoqueLocal"
+            },
+            "material_id": {
+                "coluna": "material_id",
+                "metodo": "material"
+            },
+            "pessoa_id": {
+                "coluna": "pessoa_id",
+                "metodo": "pessoa"
+            }
+        },
+        "hasMany": []
+    },
+    "estoque_local": {
+        "tabela": "estoque_local",
+        "namespace": "App\\Models",
+        "classe": "EstoqueLocal",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/EstoqueLocal.php",
+        "belongsTo": {
+            "pessoa_id": {
+                "coluna": "pessoa_id",
+                "metodo": "pessoa"
+            }
+        },
+        "hasMany": {
+            "conferencia.estoque_local_id": {
+                "tabela": "conferencia",
+                "coluna": "estoque_local_id",
+                "metodo": "conferencia"
+            },
+            "locacoes.estoque_local_id": {
+                "tabela": "locacoes",
+                "coluna": "estoque_local_id",
+                "metodo": "locacoes"
+            },
+            "material.estoque_local_id": {
+                "tabela": "material",
+                "coluna": "estoque_local_id",
+                "metodo": "material"
+            },
+            "ordem_compra.estoque_local_id": {
+                "tabela": "ordem_compra",
+                "coluna": "estoque_local_id",
+                "metodo": "ordemCompra"
+            }
+        }
+    },
+    "historico_compra": {
+        "tabela": "historico_compra",
+        "namespace": "App\\Models",
+        "classe": "HistoricoCompra",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/HistoricoCompra.php",
+        "belongsTo": [],
+        "hasMany": []
+    },
+    "material_utilizado": {
+        "tabela": "material_utilizado",
+        "namespace": "App\\Models",
+        "classe": "MaterialUtilizado",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/MaterialUtilizado.php",
+        "belongsTo": [],
+        "hasMany": []
+    },
+    "ordem_compra": {
+        "tabela": "ordem_compra",
+        "namespace": "App\\Models",
+        "classe": "OrdemCompra",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/OrdemCompra.php",
+        "belongsTo": [],
+        "hasMany": []
+    },
+    "locacao": {
+        "tabela": "locacao",
+        "namespace": "App\\Models",
+        "classe": "Locacao",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Locacao.php",
+        "belongsTo": {
+            "estoque_local_id": {
+                "coluna": "estoque_local_id",
+                "metodo": "estoqueLocal"
+            },
+            "pessoa_id": {
+                "coluna": "pessoa_id",
+                "metodo": "pessoa"
+            }
+        },
+        "hasMany": {
+            "imagem.locacao_id": {
+                "tabela": "imagem",
+                "coluna": "locacao_id",
+                "metodo": "imagem"
+            }
+        }
+    },
+    "acao": {
+        "tabela": "acao",
+        "namespace": "App\\Models",
+        "classe": "Acao",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Acao.php",
+        "belongsTo": [],
+        "hasMany": {
+            "acao_permissao.acao_id": {
+                "tabela": "acao_permissao",
+                "coluna": "acao_id",
+                "metodo": "acaoPermissao"
+            },
+            "usuario_acao.acao_id": {
+                "tabela": "usuario_acao",
+                "coluna": "acao_id",
+                "metodo": "usuarioAcao"
+            }
+        }
+    },
+    "acao_permissao": {
+        "tabela": "acao_permissao",
+        "namespace": "App\\Models",
+        "classe": "AcaoPermissao",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/AcaoPermissao.php",
+        "belongsTo": {
+            "acao_id": {
+                "coluna": "acao_id",
+                "metodo": "acao"
+            },
+            "permissao_id": {
+                "coluna": "permissao_id",
+                "metodo": "permissao"
+            }
+        },
+        "hasMany": []
+    },
+    "permissao": {
+        "tabela": "permissao",
+        "namespace": "App\\Models",
+        "classe": "Permissao",
+        "arquivo": "D:\\DevProjects\\messeffect\\MessEffectWebService\\app\/Models\/Permissao.php",
+        "belongsTo": [],
+        "hasMany": {
+            "acao_permissao.permissao_id": {
+                "tabela": "acao_permissao",
+                "coluna": "permissao_id",
+                "metodo": "acaoPermissao"
+            }
+        }
+    }
+}
