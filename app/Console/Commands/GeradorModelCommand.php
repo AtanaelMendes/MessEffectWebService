@@ -68,11 +68,10 @@ namespace {$this->namespace};
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Venturecraft\Revisionable\RevisionableTrait;
 
 class {$this->classe} extends BaseModel
 {
-    use SoftDeletes, RevisionableTrait;
+    use SoftDeletes;
 
     protected \$table = '{$this->tabela}';
 ";
