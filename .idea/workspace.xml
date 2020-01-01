@@ -2,26 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5f0fbc-2b98-463c-9bf5-65f575959976" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Acao.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AcaoPermissao.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/BaseModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Conferencia.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/EstoqueLocal.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Imagem.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Locacao.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/OauthAccessToken.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Permissao.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Pessoa.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/UsuarioAcao.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/indice.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/atana.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DTOs/UsuarioInfoDTO.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repository/AcaoRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repository/BaseRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repository/PessoaRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repository/UsuarioRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/SynchronizableResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/GeradorModelCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/GeradorModelCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Usuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -237,11 +226,6 @@
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
               <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b28b97e5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b28b97e5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4fbf8e0" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
           </expand>
           <select />
         </treeState>
@@ -261,7 +245,7 @@
       <workItem from="1577633218378" duration="3384000" />
       <workItem from="1577656409304" duration="771000" />
       <workItem from="1577801257114" duration="1181000" />
-      <workItem from="1577804974842" duration="7888000" />
+      <workItem from="1577804974842" duration="12557000" />
     </task>
     <task id="LOCAL-00001" summary="configurando oauth2 2">
       <created>1577802389485</created>

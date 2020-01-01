@@ -8,25 +8,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\UsuarioRepository;
-use App\Repositories\PessoaRepository;
-use App\Repositories\AcaoRepository;
-//use App\DTOs\AccountInfoDTO;
-use App\Services\ImageService;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-//use App\Http\Requests\AccountChangePasswordRequest;
-//use App\Http\Requests\AccountInfoRequest;
-//use App\Http\Requests\AccountRequest;
-use App\Http\Requests\ImageRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-class AccountController extends Controller {
+use App\Repository\UsuarioRepository;
+use App\Repository\PessoaRepository;
+use App\Repository\AcaoRepository;
+use App\DTOs\UsuarioInfoDTO;
+use App\Services\ImageService;
+//use App\Http\Requests\UsuarioRequest;
+//use App\Http\Requests\UsuarioChangePasswordRequest;
+//use App\Http\Requests\UsuarioInfoRequest;
+//use App\Http\Requests\ImageRequest;
+
+
+class UsuarioController extends Controller {
 
     private $usuarioRepository;
     private $acaoRepository;
@@ -45,7 +45,7 @@ class AccountController extends Controller {
     }
 
     public function index(Request $request){
-        $this->authorize('lista_usuarios');
+        $this->authorize('list_usuarios');
 
         $type = $request->query('type');
         $email = $request->query('email');
@@ -64,110 +64,110 @@ class AccountController extends Controller {
     }
 
     public function store(Request $request){
-        $this->authorize('create_account');
+        $this->authorize('create_usuario');
         Log::info("Criando conta para: " . $request->input('email'));
 
-        $roleIds = $this->getRolesIds($request);
+        $acoesId = $this->getRolesIds($request);
 
-        $account = $request->all();
-        $account['password'] = Hash::make($account['password']);
+        $usuario = $request->all();
+        $usuario['password'] = Hash::make($usuario['password']);
 
-        $createdAccount = DB::transaction(function () use ($account, $roleIds) {
-            $createdAccount = $this->accountRepository->create($account);
+        $createdUsuario = DB::transaction(function () use ($usuario, $acoesId) {
+            $createdUsuario = $this->UsuarioRepository->create($usuario);
 
-            if (count($roleIds) > 0) {
-                $createdAccount->roles()->sync($roleIds);
+            if (count($acoesId) > 0) {
+                $createdUsuario->roles()->sync($acoesId);
             }
 
-            return $createdAccount;
+            return $createdUsuario;
         });
 
-        $createdAccount = $this->accountRepository->findOneOrFail($createdAccount->id);
-        $createdAccount->load('produtor');
-        unset($createdAccount->produtor_id);
-        if(count($roleIds) > 0) {
-            $createdAccount->load('roles');
+        $createdUsuario = $this->UsuarioRepository->findOneOrFail($createdUsuario->id);
+        $createdUsuario->load('pessoa');
+        unset($createdUsuario->pessoa_id);
+        if(count($acoesId) > 0) {
+            $createdUsuario->load('acoes');
         }
-        return response($createdAccount, Response::HTTP_CREATED);
+        return response($createdUsuario, Response::HTTP_CREATED);
     }
 
     public function info(){
-        $this->authorize('show_account_info');
+        $this->authorize('show_usuario_info');
         Log::info("Pegando as informações da própria conta");
 
-        $account = Auth::user();
+        $usuario = Auth::user();
 
-        return response(new AccountInfoDTO($account), Response::HTTP_OK);
+        return response(new UsuarioInfoDTO($usuario), Response::HTTP_OK);
     }
 
     public function logout(){
-        $user = Auth::user()->token();
-        $user->revoke();
+        $usuario = Auth::user()->token();
+        $usuario->revoke();
         return response('', Response::HTTP_OK);
     }
 
     public function show($id){
-        $this->authorize('show_account');
+        $this->authorize('show_usuario');
         Log::info("Exibindo as informações da conta com id = " . $id);
 
-        $account = $this->accountRepository->findOneOrFail($id, true);
-        $account->load('roles');
-        $account->load('produtor');
+        $usuario = $this->UsuarioRepository->findOneOrFail($id, true);
+        $usuario->load('acoes');
+        $usuario->load('pessoa');
 
-        return response($account, Response::HTTP_OK);
+        return response($usuario, Response::HTTP_OK);
     }
 
-    public function updateInfo(AccountInfoRequest $request)
+    public function updateInfo(Request $request)
     {
         $this->authorize('update_account');
         Log::info("Atualizando as informações da conta");
 
         $existedAccount = Auth::user();
 
-        $account = $request->only('nome', 'email');
+        $usuario = $request->only('nome', 'email');
 
-        $this->accountRepository->update($account, $existedAccount->id, true);
+        $this->UsuarioRepository->update($usuario, $existedAccount->id, true);
 
-        $updatedAccount = $this->accountRepository->find($existedAccount->id, true);
+        $updatedAccount = $this->UsuarioRepository->find($existedAccount->id, true);
 
         return response($updatedAccount, Response::HTTP_OK);
     }
 
-    public function changePassword(AccountChangePasswordRequest $request)
+    public function changePassword(Request $request)
     {
-        $this->authorize('update_account');
+        $this->authorize('update_usuario');
         Log::info("Alterando a senha da conta");
 
         $existedAccount = Auth::user();
 
-        $account = ['password' => Hash::make($request->input('new_password'))];
+        $usuario = ['password' => Hash::make($request->input('new_password'))];
 
-        $this->accountRepository->update($account, $existedAccount->id, true);
+        $this->UsuarioRepository->update($usuario, $existedAccount->id, true);
 
-        $updatedAccount = $this->accountRepository->find($existedAccount->id, true);
+        $updatedAccount = $this->UsuarioRepository->find($existedAccount->id, true);
 
         return response($updatedAccount, Response::HTTP_OK);
     }
 
-    public function update(AccountRequest $request, $id){
-        $this->authorize('update_account');
+    public function update(Request $request, $id){
+        $this->authorize('update_usuario');
         Log::info("Atualizando as informações da conta com id = " . $id);
 
-        $existedAccount = $this->accountRepository->findOneOrFail($id, true);
+        $existedAccount = $this->UsuarioRepository->findOneOrFail($id, true);
 
-        $roleIds = $this->getRolesIds($request);
+        $acoesId = $this->getAcoesId($request);
 
-        $account = $request->only('nome', 'email', 'password', 'produtor_id');
+        $usuario = $request->only('nome', 'email', 'password', 'pessoa_id');
 
-        if(array_key_exists('password', $account)){
-            $account['password'] = Hash::make($request->input('password'));
+        if(array_key_exists('password', $usuario)){
+            $usuario['password'] = Hash::make($request->input('password'));
         }
 
-        $this->accountRepository->update($account, $existedAccount->id, true);
-        $updatedAccount = $this->accountRepository->find($existedAccount->id, true);
+        $this->UsuarioRepository->update($usuario, $existedAccount->id, true);
+        $updatedAccount = $this->UsuarioRepository->find($existedAccount->id, true);
 
-        if(count($roleIds) > 0) {
-            $updatedAccount->roles()->sync($roleIds);
+        if(count($acoesId) > 0) {
+            $updatedAccount->roles()->sync($acoesId);
             $updatedAccount->load('roles');
         }
 
@@ -175,53 +175,53 @@ class AccountController extends Controller {
     }
 
     public function restore($id){
-        $this->authorize('restore_account');
+        $this->authorize('restore_usuario');
         Log::info("Restaurando a conta com id = " . $id);
 
-        $this->accountRepository->restore($id);
+        $this->UsuarioRepository->restore($id);
 
         return response(null, Response::HTTP_OK);
     }
 
     public function destroy($id){
-        $this->authorize('delete_account');
-        Log::info("Desativando a conta com id = " . $id);
+        $this->authorize('delete_usuario');
+        Log::info("Deletando a conta com id = " . $id);
 
-        $this->accountRepository->forceDelete($id, true);
+        $this->UsuarioRepository->forceDelete($id, true);
 
         return response(null, Response::HTTP_OK);
     }
 
     public function archive($id){
-        $this->authorize('archive_account');
+        $this->authorize('archive_usuario');
         Log::info("Arquivando a conta com id = " . $id);
 
-        $this->accountRepository->delete($id, true);
+        $this->UsuarioRepository->delete($id, true);
 
         return response(null, Response::HTTP_OK);
     }
 
-    private function getRolesIds(AccountRequest $request){
-        $roleIds = [];
+    private function getAcoesId(Request $request){
+        $acoesId = [];
         if($request->input('roles')) {
-            $roleIds = array_map('intval', explode(',', $request->input('roles')));
+            $acoesId = array_map('intval', explode(',', $request->input('roles')));
 
-            foreach($roleIds as $roleId){
-                $this->roleRepository->findOneOrFail($roleId);
+            foreach($acoesId as $acaoId){
+                $this->acaoRepository->findOneOrFail($acaoId);
             }
         }
 
-        return $roleIds;
+        return $acoesId;
     }
 
-    public function uploadImage(ImageRequest $request)
+    public function uploadImage(Request $request)
     {
-        $this->authorize('upload_account_image');
+        $this->authorize('upload_usuario_image');
         Log::info("Alterando a imagem da conta");
 
         $existedAccount = Auth::user();
 
-        $createdImage = $this->imageService->save($request, $existedAccount->produtor_id);
+        $createdImage = $this->imageService->save($request, $existedAccount->pessoa_id);
 
         $existedAccount->image()->associate($createdImage);
 
