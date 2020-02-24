@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5f0fbc-2b98-463c-9bf5-65f575959976" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/atana.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/DTOs/UsuarioInfoDTO.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/AcaoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/BaseRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/PessoaRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/UsuarioRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/SynchronizableResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/messeffectdb.dbs" beforeDir="false" afterPath="$PROJECT_DIR$/utils/messeffectdb.dbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/messeffectdb.dbs.bak" beforeDir="false" afterPath="$PROJECT_DIR$/utils/messeffectdb.dbs.bak" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -245,7 +239,9 @@
       <workItem from="1577633218378" duration="3384000" />
       <workItem from="1577656409304" duration="771000" />
       <workItem from="1577801257114" duration="1181000" />
-      <workItem from="1577804974842" duration="12557000" />
+      <workItem from="1577804974842" duration="12823000" />
+      <workItem from="1582479923729" duration="42000" />
+      <workItem from="1582480211915" duration="488000" />
     </task>
     <task id="LOCAL-00001" summary="configurando oauth2 2">
       <created>1577802389485</created>

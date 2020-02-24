@@ -378,7 +378,7 @@
 			<index name="idx_usuario_unique" unique="UNIQUE" >
 				<column name="email" />
 			</index>
-			<index name="idx_usuario_pessoa_id" unique="NORMAL" >
+			<index name="idx_usuario_pessoa_id" unique="UNIQUE" >
 				<column name="pessoa_id" />
 			</index>
 			<fk name="fk_usuario_imagem" to_schema="messeffect" to_table="imagem" >
@@ -446,12 +446,12 @@
 		<entity schema="messeffect" name="ordem_compra" color="C1D8EE" x="336" y="368" />
 	</layout>
 	<layout name="Usuario" id="Layout_35216f4" show_relation="columns" >
-		<entity schema="messeffect" name="imagem" color="3986C1" x="288" y="48" />
 		<entity schema="messeffect" name="acao" color="C1D8EE" x="400" y="352" />
 		<entity schema="messeffect" name="acao_permissao" color="C1D8EE" x="560" y="352" />
-		<entity schema="messeffect" name="permissao" color="C1D8EE" x="576" y="576" />
-		<entity schema="messeffect" name="usuario" color="C1D8EE" x="48" y="352" />
 		<entity schema="messeffect" name="pessoa" color="3986C1" x="48" y="48" />
 		<entity schema="messeffect" name="usuario_acao" color="C1D8EE" x="240" y="352" />
+		<entity schema="messeffect" name="permissao" color="C1D8EE" x="576" y="48" />
+		<entity schema="messeffect" name="imagem" color="3986C1" x="288" y="48" />
+		<entity schema="messeffect" name="usuario" color="C1D8EE" x="48" y="352" />
 	</layout>
 </project>
