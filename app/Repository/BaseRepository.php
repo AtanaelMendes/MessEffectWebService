@@ -6,7 +6,7 @@
  * Time: 10:16
  */
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

@@ -2,11 +2,12 @@
 namespace App\Repository;
 
 
-use App\Models\Usuario;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Repositories\BaseRepository;
 
-class UsuarioRepository extends BaseRepository
+class AccountRepository extends BaseRepository
 {
     protected $model;
 
@@ -14,9 +15,9 @@ class UsuarioRepository extends BaseRepository
      * AccountRepository constructor.
      * @param Usuario $usuario
      */
-    public function __construct(Usuario $usuario)
+    public function __construct(User $user)
     {
-        $this->model = $usuario;
+        $this->model = $user;
     }
 
     public function searchByEmailAndType($email, $type)
@@ -29,13 +30,13 @@ class UsuarioRepository extends BaseRepository
         if($type == "trashed"){
             //onlyTrashed
             if($email){
-                return DB::table("usuario")
+                return DB::table("users")
                     ->where('email', 'ilike', '%' . $email . '%')
                     ->orderBy('created_at', 'desc')
                     ->whereNotNull('deleted_at')
                     ->get();
             }else{
-                return DB::table("usuario")
+                return DB::table("users")
                     ->whereNotNull('deleted_at')
                     ->orderBy('created_at', 'desc')
                     ->get();
@@ -43,13 +44,13 @@ class UsuarioRepository extends BaseRepository
         }else if($type == "non-trashed"){
             //passar false
             if($email){
-                return DB::table("usuario")
+                return DB::table("users")
                     ->where('email', 'ilike', '%' . $email . '%')
                     ->orderBy('created_at', 'desc')
                     ->whereNull('deleted_at')
                     ->get();
             }else{
-                return DB::table("usuario")
+                return DB::table("users")
                     ->whereNull('deleted_at')
                     ->orderBy('created_at', 'desc')
                     ->get();
@@ -57,12 +58,12 @@ class UsuarioRepository extends BaseRepository
         }
 
         if($email){
-            return DB::table("usuario")
+            return DB::table("users")
                 ->where('email', 'ilike', '%' . $email . '%')
                 ->orderBy('created_at', 'desc')
                 ->get();
         }else{
-            return DB::table("usuario")->orderBy('created_at', 'desc')->get();
+            return DB::table("users")->orderBy('created_at', 'desc')->get();
         }
     }
 }
