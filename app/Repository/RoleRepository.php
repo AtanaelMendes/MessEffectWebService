@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Models\Acao;
-use Illuminate\Database\Eloquent\Model;
 
 class RoleRepository extends BaseRepository
 {

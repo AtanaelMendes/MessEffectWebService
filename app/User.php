@@ -43,9 +43,10 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
     }
 
     public function hasPermission($permissionCode){
+//        dd("model");
         foreach ($this->roles()->get() as $role){
             foreach ($role->permissions()->get() as $permission){
-                if($permission->code == $permissionCode){
+                if($permission->codigo == $permissionCode){
                     return true;
                 }
             }

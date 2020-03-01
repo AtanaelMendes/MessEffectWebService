@@ -18,12 +18,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ExampleEvent' => [
             'App\Listeners\ExampleListener',
         ],
-        'Laravel\Passport\Events\AccessTokenCreated' => [
-            'App\Listeners\RevokeOldTokens',
-        ],
-        'Laravel\Passport\Events\RefreshTokenCreated' => [
-            'App\Listeners\PruneOldTokens',
-        ],
+//        'Laravel\Passport\Events\AccessTokenCreated' => [
+//            'App\Listeners\RevokeOldTokens',
+//        ],
+//        'Laravel\Passport\Events\RefreshTokenCreated' => [
+//            'App\Listeners\PruneOldTokens',
+//        ],
     ];
 
     /**

@@ -2,39 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5f0fbc-2b98-463c-9bf5-65f575959976" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.docker/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.docker/config/000-default.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.docker/config/custom-xdebug.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/AccountChangePasswordRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/AccountInfoRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/FormRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ImageRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/FormRequestServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/AccountsTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/RolesTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/CorsMiddleware.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DTOs/AccountInfoDTO.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DTOs/AccountInfoDTO.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AccountRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/AccountRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Acao.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Acao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Imagem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Imagem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repository/AccountRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/AccountRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repository/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/ImageRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repository/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/RoleRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/messeffectdb.dbs" beforeDir="false" afterPath="$PROJECT_DIR$/utils/messeffectdb.dbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/messeffectdb.dbs.bak" beforeDir="false" afterPath="$PROJECT_DIR$/utils/messeffectdb.dbs.bak" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -289,6 +267,7 @@
       <workItem from="1582853108691" duration="2932000" />
       <workItem from="1583000911956" duration="3221000" />
       <workItem from="1583006987354" duration="25672000" />
+      <workItem from="1583088880723" duration="9941000" />
     </task>
     <task id="LOCAL-00001" summary="configurando oauth2 2">
       <created>1577802389485</created>

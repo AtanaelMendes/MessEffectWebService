@@ -18,7 +18,7 @@ use App\Repository\AccountRepository;
 use App\Services\ImageService;
 use App\User;
 
-class AccountController
+class AccountController extends Controller
 {
     private $accountRepository;
     private $roleRepository;
@@ -40,7 +40,7 @@ class AccountController
     }
 
     public function index(Request $request){
-//        $this->authorize('list_accounts');
+        $this->authorize('list_accounts');
         $type = $request->query('type');
         $email = $request->query('email');
 
@@ -57,7 +57,7 @@ class AccountController
         return response($items->values(), Response::HTTP_OK);
     }
     public function store(AccountRequest $request){
-//        $this->authorize('create_account');
+        $this->authorize('create_account');
         Log::info("Criando conta para: " . $request->input('email'));
 
         $roleIds = $this->getRolesIds($request);
