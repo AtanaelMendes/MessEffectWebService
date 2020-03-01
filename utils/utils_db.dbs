@@ -1,0 +1,3580 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="PostgreSQL" id="Project_54c0040" template="Default" database="PostgreSQL" >
+	<schema name="public" catalogname="homestead" >
+		<table name="_backup_entregas_negocios" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="negocio_cultura_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="entrega_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantidade" type="numeric" length="14" decimal="6" jt="2" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+		</table>
+		<table name="_backup_negocios_culturas_movimentos" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="negocio_cultura_movimento_tipo_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="negocio_cultura_transferencia_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="entrega_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantidade" type="numeric" length="14" decimal="6" jt="2" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="negocio_cultura_armazem_id" type="integer" length="10" decimal="0" jt="4" />
+		</table>
+		<table name="_backup_notas_fiscais_itens" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="nota_fiscal_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="cfop_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantidade" type="numeric" length="19" decimal="4" jt="2" />
+			<column name="unidade_medida_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="valor_unitario" type="numeric" length="31" decimal="10" jt="2" />
+			<column name="valor_total" type="numeric" length="17" decimal="2" jt="2" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="entrega_negocio_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="negocio_cultura_movimento_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="valor_produto" type="numeric" length="17" decimal="2" jt="2" />
+			<column name="valor_frete" type="numeric" length="17" decimal="2" jt="2" />
+			<column name="valor_seguro" type="numeric" length="17" decimal="2" jt="2" />
+			<column name="valor_outro" type="numeric" length="17" decimal="2" jt="2" />
+			<column name="valor_desconto" type="numeric" length="17" decimal="2" jt="2" />
+			<column name="produto_barra_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="codigo" type="varchar" length="60" decimal="0" jt="12" />
+			<column name="barras" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="produto" type="varchar" length="120" decimal="0" jt="12" />
+			<column name="ncm" type="varchar" length="8" decimal="0" jt="12" />
+			<column name="beneficio_fiscal" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="excecao_tabela_ipi" type="varchar" length="3" decimal="0" jt="12" />
+			<column name="totalizador" type="bool" length="1" decimal="0" jt="-7" />
+			<column name="pedido" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="pedido_item" type="varchar" length="6" decimal="0" jt="12" />
+			<column name="ficha_conteudo_importacao" type="varchar" length="36" decimal="0" jt="12" />
+			<column name="barras_tributacao" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="unidade_medida_tributacao_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantidade_tributacao" type="numeric" length="19" decimal="4" jt="2" />
+			<column name="valor_unitario_tributacao" type="numeric" length="31" decimal="10" jt="2" />
+			<column name="informacoes_adicionais" type="varchar" length="500" decimal="0" jt="12" />
+			<column name="cest" type="varchar" length="7" decimal="0" jt="12" />
+			<column name="escala_relevante" type="bool" length="1" decimal="0" jt="-7" />
+			<column name="cnpj_fabricante" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="valor_total_tributos" type="varchar" decimal="0" jt="12" />
+		</table>
+		<table name="account_roles" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="account_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="role_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<index name="account_roles_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="account_roles_account_id_role_id_unique" unique="UNIQUE" >
+				<column name="account_id" />
+				<column name="role_id" />
+			</index>
+			<fk name="account_roles_account_id_foreign" to_schema="public" to_table="accounts" delete_action="cascade" >
+				<fk_column name="account_id" pk="id" />
+			</fk>
+			<fk name="account_roles_role_id_foreign" to_schema="public" to_table="roles" >
+				<fk_column name="role_id" pk="id" />
+			</fk>
+		</table>
+		<table name="accounts" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" />
+			<column name="email" type="varchar" length="40" decimal="0" jt="12" mandatory="y" />
+			<column name="password" type="varchar" length="60" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="image_id" type="integer" jt="4" />
+			<index name="account_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="account_email_unique" unique="UNIQUE" >
+				<column name="email" />
+			</index>
+			<index name="idx_account_produtor_id" unique="NORMAL" >
+				<column name="produtor_id" />
+			</index>
+			<fk name="fk_account_produtor" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_accounts_images" to_schema="public" to_table="images" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+		</table>
+		<table name="areas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="localizacao_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="image_id" type="integer" jt="4" />
+			<index name="areas_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_areas_produtor_id" unique="NORMAL" >
+				<column name="produtor_id" />
+			</index>
+			<fk name="areas_localizacao_id_foreign" to_schema="public" to_table="localizacoes" >
+				<fk_column name="localizacao_id" pk="id" />
+			</fk>
+			<fk name="fk_areas_produtor" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_areas_images" to_schema="public" to_table="images" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+		</table>
+		<table name="armazens" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="localizacao_id" type="integer" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_armazens_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_armazens_localizacoes" to_schema="public" to_table="localizacoes" >
+				<fk_column name="localizacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="bancos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="numero" type="smallint" jt="5" mandatory="y" />
+			<column name="sigla" type="varchar" length="25" jt="12" mandatory="y" />
+			<column name="nome" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_bancos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="caminhoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="placa" type="varchar" length="7" jt="12" mandatory="y" />
+			<column name="tara" type="integer" jt="4" />
+			<column name="pbt" type="integer" jt="4" />
+			<column name="estimativa_carga" type="integer" jt="4" />
+			<column name="unidade_medida_id" type="integer" jt="4" />
+			<column name="antt" type="varchar" length="20" jt="12" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="image_id" type="integer" jt="4" />
+			<column name="pessoa_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="estado_id" type="integer" jt="4" >
+				<comment><![CDATA[veicTransp.UF]]></comment>
+			</column>
+			<index name="pk_veiculo_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_veiculos_produtores" to_schema="public" to_table="produtores" update_action="cascade" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_veiculos_images" to_schema="public" to_table="images" delete_action="cascade" update_action="cascade" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+			<fk name="fk_veiculos_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_caminhoes_unidades" to_schema="public" to_table="unidades" update_action="cascade" >
+				<fk_column name="unidade_medida_id" pk="id" />
+			</fk>
+			<fk name="fk_caminhoes_estados" to_schema="public" to_table="estados" update_action="cascade" >
+				<fk_column name="estado_id" pk="id" />
+			</fk>
+		</table>
+		<table name="caminhoes_reboques" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="caminhao_id" type="integer" jt="4" mandatory="y" />
+			<column name="reboque_id" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_caminhoes_reboques_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_caminhoes_reboques_caminhoes" to_schema="public" to_table="caminhoes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="caminhao_id" pk="id" />
+			</fk>
+			<fk name="fk_caminhoes_reboques_reboques" to_schema="public" to_table="reboques" delete_action="cascade" update_action="cascade" >
+				<fk_column name="reboque_id" pk="id" />
+			</fk>
+		</table>
+		<table name="cfops" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="numero" type="integer" jt="4" mandatory="y" />
+			<column name="descricao" type="varchar" jt="12" mandatory="y" />
+			<column name="is_saida" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_nfe" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<column name="is_comunicacao" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_transporte" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_devolucao" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_cfops_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="cfops_numero_uindex" unique="UNIQUE" >
+				<column name="numero" />
+			</index>
+		</table>
+		<table name="cidades" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="estado_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="codigo" type="varchar" length="7" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[cMun
+TCodMunIBGE]]></comment>
+			</column>
+			<column name="nome" type="varchar" length="40" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="cidades_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="cidades_codigo_unique" unique="UNIQUE" >
+				<column name="codigo" />
+			</index>
+			<fk name="cidades_estado_id_foreign" to_schema="public" to_table="estados" delete_action="cascade" >
+				<fk_column name="estado_id" pk="id" />
+			</fk>
+		</table>
+		<table name="classificacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_classificacoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="contas_bancarias" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="pessoa_id" type="integer" jt="4" mandatory="y" />
+			<column name="banco_id" type="integer" jt="4" mandatory="y" />
+			<column name="agencia" type="smallint" jt="5" mandatory="y" />
+			<column name="agencia_digito" type="smallint" jt="5" />
+			<column name="numero" type="integer" jt="4" mandatory="y" />
+			<column name="numero_digito" type="smallint" jt="5" mandatory="y" />
+			<column name="operacao" type="integer" jt="4" />
+			<column name="tipo" type="smallint" jt="5" mandatory="y" >
+				<comment><![CDATA[Corrente
+Poupanca
+Outra]]></comment>
+			</column>
+			<column name="observacoes" type="text" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_contas_bancarias_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_contas_bancarias_bancos" to_schema="public" to_table="bancos" >
+				<fk_column name="banco_id" pk="id" />
+			</fk>
+			<fk name="fk_contas_bancarias_pessoas" to_schema="public" to_table="pessoas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="contatos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="pessoa_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="100" jt="12" />
+			<column name="is_cobranca" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="is_fiscal" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="contatos_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="contatos_pessoa_id_foreign" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="cultivares" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="marca_id" type="integer" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="ciclo" type="cultivar_ciclo" decimal="0" jt="12" >
+				<comment><![CDATA[Superprecoce
+Precoce
+Médio-Precoce
+Médio
+Médio-Tardio
+Tardio]]></comment>
+			</column>
+			<column name="ciclo_dias" type="integer" jt="4" >
+				<comment><![CDATA[Numero de Dias do Ciclo]]></comment>
+			</column>
+			<column name="is_convencional" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_rr" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_inox" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="is_intacta" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="observacoes" type="text" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="idx_variedades_cultura_id" unique="NORMAL" >
+				<column name="cultura_id" />
+			</index>
+			<index name="idx_cultivares_marca_id" unique="NORMAL" >
+				<column name="marca_id" />
+			</index>
+			<index name="pk_cultivares_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_variedades_culturas" to_schema="public" to_table="culturas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_cultivares_marcas" to_schema="public" to_table="marcas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="marca_id" pk="id" />
+			</fk>
+		</table>
+		<table name="culturas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="default_estimativa" type="float8" length="17" decimal="17" jt="6" mandatory="y" />
+			<column name="image_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="unidade_medida_pesagem_id" type="integer" jt="4" mandatory="y" >
+				<defo>6</defo>
+			</column>
+			<column name="unidade_medida_preco_id" type="integer" jt="4" mandatory="y" >
+				<defo>10</defo>
+			</column>
+			<column name="unidade_medida_area_id" type="integer" jt="4" mandatory="y" >
+				<defo>2</defo>
+			</column>
+			<index name="idx_culturas_produtor_id" unique="NORMAL" >
+				<column name="produtor_id" />
+			</index>
+			<index name="pk_culturas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_culturas_produtores" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_culturas_images" to_schema="public" to_table="images" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+			<fk name="fk_culturas_unidades_2" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_pesagem_id" pk="id" />
+			</fk>
+			<fk name="fk_culturas_unidades_4" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_preco_id" pk="id" />
+			</fk>
+			<fk name="fk_culturas_unidades_5" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_area_id" pk="id" />
+			</fk>
+		</table>
+		<table name="culturas_classificacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="classificacao_id" type="integer" jt="4" mandatory="y" />
+			<column name="tolerancia" type="numeric" length="4" decimal="2" jt="2" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_culturas_classificacoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unique_cultura_id_classificacao_id" unique="UNIQUE" >
+				<column name="cultura_id" />
+				<column name="classificacao_id" />
+			</index>
+			<fk name="fk_culturas_classificacoes_culturas" to_schema="public" to_table="culturas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_culturas_classificacoes_classificacoes" to_schema="public" to_table="classificacoes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="classificacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="emails" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="contato_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="endereco" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="emails_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="emails_contato_id_foreign" to_schema="public" to_table="contatos" delete_action="cascade" >
+				<fk_column name="contato_id" pk="id" />
+			</fk>
+		</table>
+		<table name="entregas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="is_saida" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<column name="caminhao_id" type="integer" jt="4" mandatory="y" />
+			<column name="inicio_carregamento" type="timestamp" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="envio_armazem" type="timestamp" jt="93" />
+			<column name="armazem_id" type="integer" jt="4" />
+			<column name="motorista_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="status" type="entrega_status" decimal="0" jt="12" mandatory="y" />
+			<column name="safra_cultura_id" type="integer" jt="4" mandatory="y" />
+			<index name="pk_entregas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_entregas_caminhoes" to_schema="public" to_table="caminhoes" update_action="cascade" >
+				<fk_column name="caminhao_id" pk="id" />
+			</fk>
+			<fk name="fk_entregas_armazens" to_schema="public" to_table="armazens" update_action="cascade" >
+				<fk_column name="armazem_id" pk="id" />
+			</fk>
+			<fk name="fk_entregas_motoristas" to_schema="public" to_table="motoristas" update_action="cascade" >
+				<fk_column name="motorista_id" pk="id" />
+			</fk>
+			<fk name="fk_entregas_safra_culturas" to_schema="public" to_table="safra_culturas" >
+				<fk_column name="safra_cultura_id" pk="id" />
+			</fk>
+		</table>
+		<table name="entregas_classificacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="entrega_pesagem_id" type="integer" jt="4" mandatory="y" />
+			<column name="classificacao_id" type="integer" jt="4" mandatory="y" />
+			<column name="verificado" type="numeric" length="4" decimal="2" jt="2" mandatory="y" />
+			<column name="peso_desconto" type="numeric" length="14" decimal="6" jt="2" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_entregas_classificacoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_entregas_classificacoes_entregas_pesagens" to_schema="public" to_table="entregas_pesagens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="entrega_pesagem_id" pk="id" />
+			</fk>
+			<fk name="fk_entregas_classificacoes_classificacoes" to_schema="public" to_table="classificacoes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="classificacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="entregas_pesagens" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="entrega_id" type="integer" jt="4" mandatory="y" />
+			<column name="peso_bruto_total" type="numeric" length="14" decimal="6" jt="2" mandatory="y" />
+			<column name="peso_tara" type="numeric" length="14" decimal="6" jt="2" mandatory="y" />
+			<column name="peso_bruto_produto" type="numeric" length="14" decimal="6" jt="2" mandatory="y" >
+				<comment><![CDATA[calculado pelo sistema:
+
+peso_bruto_total - peso_tara]]></comment>
+			</column>
+			<column name="peso_desconto" type="numeric" length="14" decimal="6" jt="2" mandatory="y" >
+				<comment><![CDATA[calculado pelo sistema:
+
+somatorio de entregas_classificacoes.peso_desconto]]></comment>
+			</column>
+			<column name="peso_liquido" type="numeric" length="14" decimal="6" jt="2" mandatory="y" >
+				<comment><![CDATA[calculado pelo sistema:
+
+peso_bruto_produto - peso_desconto]]></comment>
+			</column>
+			<column name="numero_ticket" type="numeric" length="20" decimal="0" jt="2" />
+			<column name="emissao" type="timestamp" jt="93" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_entregas_pesagens_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_entregas_pesagens_entregas" to_schema="public" to_table="entregas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="entrega_id" pk="id" />
+			</fk>
+		</table>
+		<table name="entregas_talhoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="entrega_id" type="integer" jt="4" mandatory="y" />
+			<column name="safra_cultura_talhao_id" type="integer" jt="4" mandatory="y" />
+			<column name="percentual" type="smallint" jt="5" mandatory="y" >
+				<defo>100</defo>
+			</column>
+			<column name="quantidade" type="numeric" length="14" decimal="6" jt="2" >
+				<comment><![CDATA[Calculado pelo sistema:
+
+Somatorio de entregas_pesagens.peso_liquido
+Divide por 100
+Multiplica pelo entregas_talhoes.percentual
+
+Converter de entregas_pesagens.unidade_medida_id para negocios_culturas.unidade_medida_id]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_entregas_talhoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="entrega_safra_cultura_talhao_uk" unique="UNIQUE" >
+				<column name="entrega_id" />
+				<column name="safra_cultura_talhao_id" />
+			</index>
+			<fk name="fk_entregas_talhoes_entregas" to_schema="public" to_table="entregas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="entrega_id" pk="id" />
+			</fk>
+			<fk name="fk_entregas_talhoes_safra_culturas_talhoes" to_schema="public" to_table="safra_culturas_talhoes" update_action="cascade" >
+				<fk_column name="safra_cultura_talhao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="estados" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="pais_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="codigo" type="varchar" length="2" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[cUF
+TCodUfIBGE]]></comment>
+			</column>
+			<column name="nome" type="varchar" length="20" decimal="0" jt="12" mandatory="y" />
+			<column name="sigla" type="varchar" length="2" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="estados_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="estados_codigo_unique" unique="UNIQUE" >
+				<column name="codigo" />
+			</index>
+			<index name="estados_sigla_unique" unique="UNIQUE" >
+				<column name="sigla" />
+			</index>
+			<fk name="estados_pais_id_foreign" to_schema="public" to_table="paises" delete_action="cascade" >
+				<fk_column name="pais_id" pk="id" />
+			</fk>
+		</table>
+		<table name="grupos_economicos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="produtor_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="grupo_economico_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="grupo_economico_nome_unique" unique="UNIQUE" >
+				<column name="nome" />
+				<column name="produtor_id" />
+			</index>
+			<fk name="fk_grupo_economico_produtor" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="grupos_produtos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_grupos_produtos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="images" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="file_name" type="varchar" length="300" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="produtor_id" type="integer" jt="4" />
+			<index name="pk_images_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_images_produtores" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="indexadores" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="sigla" type="varchar" length="6" jt="12" mandatory="y" />
+			<column name="nome" type="varchar" length="20" jt="12" mandatory="y" />
+			<column name="moeda_id" type="integer" jt="4" />
+			<column name="cultura_id" type="integer" jt="4" />
+			<column name="unidade_medida_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<index name="pk_indexadores_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_indexadores_moedas" to_schema="public" to_table="moedas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="moeda_id" pk="id" />
+			</fk>
+			<fk name="fk_indexadores_culturas" to_schema="public" to_table="culturas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_indexadores_unidades" to_schema="public" to_table="unidades" update_action="cascade" >
+				<fk_column name="unidade_medida_id" pk="id" />
+			</fk>
+			<fk name="fk_indexadores_produtores" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="localizacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="pessoa_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="cidade_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="endereco" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="numero" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="complemento" type="varchar" length="50" jt="12" />
+			<column name="bairro" type="varchar" length="50" jt="12" />
+			<column name="cep" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="is_cobranca" type="bool" jt="-7" />
+			<column name="is_fiscal" type="bool" jt="-7" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="localizacoes_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="localizacoes_cidade_id_foreign" to_schema="public" to_table="cidades" >
+				<fk_column name="cidade_id" pk="id" />
+			</fk>
+			<fk name="localizacoes_pessoa_id_foreign" to_schema="public" to_table="pessoas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="marcas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="image_id" type="integer" jt="4" />
+			<index name="pk_marcas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_marcas_produtor_id" unique="NORMAL" >
+				<column name="produtor_id" />
+			</index>
+			<fk name="fk_marcas_produtores" to_schema="public" to_table="produtores" update_action="cascade" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_marcas_images" to_schema="public" to_table="images" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+		</table>
+		<table name="migrations" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="migration" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="batch" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="migrations_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="moedas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="simbolo" type="varchar" length="5" jt="12" mandatory="y" />
+			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="plural" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_moedas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="motoristas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="pessoa_id" type="integer" jt="4" />
+			<column name="image_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_motoristas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_motoristas_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_motoristas_images" to_schema="public" to_table="images" delete_action="cascade" update_action="cascade" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+		</table>
+		<table name="naturezas_operacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="50" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[ide.natOp]]></comment>
+			</column>
+			<column name="finalidade" type="smallint" length="5" decimal="0" jt="5" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[ide.finNFe
+1 - NFe normal
+2 - NFe complementar
+3 - NFe de ajuste
+4 - Devolução/Retorno]]></comment>
+			</column>
+			<column name="presenca" type="smallint" length="5" decimal="0" jt="5" >
+				<defo>1</defo>
+				<comment><![CDATA[ide.indPres
+0-Não se aplica (NFe complementar ou de ajuste)
+1-Operação presencial
+2-Não presencial, internet
+3-Não presencial, teleatendimento
+4-NFC-e entrega em domicílio
+5-Operação presencial, fora do estabelecimento
+9-Não presencial, outros]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="produtor_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="pk_naturezas_operacao_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<constraint name="cns_naturezas_operacao_finalidade" >
+				<string>(finalidade &gt;= 1) AND (finalidade &lt;= 4)</string>
+			</constraint>
+			<constraint name="cns_naturezas_operacao_presenca" >
+				<string>presenca = ANY (ARRAY[0, 1, 2, 3, 4, 5, 9])</string>
+			</constraint>
+			<fk name="fk_naturezas_operacoes_produtores" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="pessoa_id" type="integer" jt="4" mandatory="y" />
+			<column name="tipo_negocio_id" type="integer" jt="4" mandatory="y" />
+			<column name="emissao" type="date" jt="91" mandatory="y" />
+			<column name="numero_pedido" type="varchar" length="25" jt="12" />
+			<column name="numero_contrato" type="varchar" length="25" jt="12" />
+			<column name="observacoes" type="text" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_negocios_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_produtores" to_schema="public" to_table="produtores" update_action="cascade" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_tipos_negocios" to_schema="public" to_table="tipos_negocios" update_action="cascade" >
+				<fk_column name="tipo_negocio_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_culturas" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" autoincrement="y" />
+			<column name="negocio_id" type="integer" jt="4" mandatory="y" />
+			<column name="safra_cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="is_pagar" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<column name="quantidade" type="numeric" length="13" decimal="3" jt="2" >
+				<comment><![CDATA[obrigatorio se tipo nao for balcao ou disponivel]]></comment>
+			</column>
+			<column name="prazo_entrega_inicial" type="date" jt="91" >
+				<comment><![CDATA[obrigatorio se tipo nao for balcao ou disponivel]]></comment>
+			</column>
+			<column name="prazo_entrega_final" type="date" jt="91" >
+				<comment><![CDATA[obrigatorio se tipo nao for balcao ou disponivel]]></comment>
+			</column>
+			<column name="observacoes" type="text" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_contrato_produtos_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_culturas_negocios" to_schema="public" to_table="negocios" delete_action="cascade" update_action="cascade" >
+				<fk_column name="negocio_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_safra_culturas" to_schema="public" to_table="safra_culturas" update_action="cascade" >
+				<fk_column name="safra_cultura_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_culturas_armazens" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="armazem_id" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_contratos_culturas_armazens_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_negocios_culturas_armazens" unique="UNIQUE" >
+				<column name="negocio_cultura_id" />
+				<column name="armazem_id" />
+			</index>
+			<fk name="fk_negocios_culturas_armazens_negocios_culturas" to_schema="public" to_table="negocios_culturas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="negocio_cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_armazens_armazens" to_schema="public" to_table="armazens" update_action="cascade" >
+				<fk_column name="armazem_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_culturas_classificacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="cultura_classificacao_id" type="integer" jt="4" mandatory="y" />
+			<column name="tolerancia" type="numeric" length="4" decimal="2" jt="2" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_contratos_classificacoes_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_culturas_classificacoes_negocios_culturas" to_schema="public" to_table="negocios_culturas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="negocio_cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_classificacoes_culturas_classificacoes" to_schema="public" to_table="culturas_classificacoes" update_action="cascade" >
+				<fk_column name="cultura_classificacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_culturas_movimentos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_cultura_movimento_tipo_id" type="integer" jt="4" mandatory="y" />
+			<column name="negocio_cultura_transferencia_id" type="integer" jt="4" />
+			<column name="entrega_id" type="integer" jt="4" />
+			<column name="negocio_cultura_armazem_id" type="integer" jt="4" mandatory="y" />
+			<column name="lancamento" type="timestamp" jt="93" mandatory="y" />
+			<column name="quantidade" type="numeric" length="14" decimal="6" jt="2" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="descricao" type="text" jt="12" />
+			<index name="pk_negocios_entregas_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_negocios_culturas_movimentos" unique="UNIQUE" >
+				<column name="entrega_id" />
+				<column name="negocio_cultura_armazem_id" />
+			</index>
+			<fk name="fk_negocios_culturas_movimentos_entregas" to_schema="public" to_table="entregas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="entrega_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_movimentos_negocios_culturas_movimentos_ti" to_schema="public" to_table="negocios_culturas_movimentos_tipos" update_action="cascade" >
+				<fk_column name="negocio_cultura_movimento_tipo_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_movimentos_negocios_culturas_transferencia" to_schema="public" to_table="negocios_culturas_transferencias" delete_action="cascade" update_action="cascade" >
+				<fk_column name="negocio_cultura_transferencia_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_movimentos_negocios_culturas_armazens" to_schema="public" to_table="negocios_culturas_armazens" update_action="cascade" >
+				<fk_column name="negocio_cultura_armazem_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_culturas_movimentos_tipos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="20" jt="12" mandatory="y" />
+			<column name="sigla" type="varchar" length="5" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="is_manual" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<index name="pk_negocios_culturas_movimentos_tipos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="negocios_culturas_transferencias" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_cultura_armazem_origem_id" type="integer" jt="4" />
+			<column name="negocio_cultura_armazem_destino_id" type="integer" jt="4" />
+			<column name="lancamento" type="timestamp" jt="93" mandatory="y" />
+			<column name="quantidade" type="numeric" length="14" decimal="6" jt="2" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="descricao" type="text" jt="12" />
+			<index name="pk_negocios_culturas_transferencias_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_culturas_transferencias_negocios_culturas_armazens" to_schema="public" to_table="negocios_culturas_armazens" >
+				<fk_column name="negocio_cultura_armazem_origem_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_culturas_transferencias_negocios_culturas_armazens_" to_schema="public" to_table="negocios_culturas_armazens" >
+				<fk_column name="negocio_cultura_armazem_destino_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_fixacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="data_fixacao" type="date" jt="91" mandatory="y" >
+				<defo>(&#039;now&#039;::text)::date</defo>
+			</column>
+			<column name="moeda_id" type="integer" jt="4" mandatory="y" />
+			<column name="preco" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="unidade_medida_preco_id" type="integer" jt="4" mandatory="y" />
+			<column name="is_preco_liquido" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="quantidade" type="numeric" length="13" decimal="3" jt="2" mandatory="y" >
+				<comment><![CDATA[obrigatorio se tipo nao for balcao ou disponivel]]></comment>
+			</column>
+			<column name="total_bruto" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="total_impostos" type="numeric" length="14" decimal="2" jt="2" >
+				<defo>0</defo>
+			</column>
+			<column name="valor_outros_descontos" type="numeric" length="14" decimal="2" jt="2" >
+				<defo>0</defo>
+			</column>
+			<column name="valor_outros_acrescimos" type="numeric" length="14" decimal="2" jt="2" >
+				<defo>0</defo>
+			</column>
+			<column name="total_liquido" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="observacoes" type="text" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_contratos_fixacoes_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_fixacoes_negocios_culturas" to_schema="public" to_table="negocios_culturas" update_action="cascade" >
+				<fk_column name="negocio_cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_fixacoes_moedas" to_schema="public" to_table="moedas" update_action="cascade" >
+				<fk_column name="moeda_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_fixacoes_unidades" to_schema="public" to_table="unidades" update_action="cascade" >
+				<fk_column name="unidade_medida_preco_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_fixacoes_titulos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_fixacao_id" type="integer" jt="4" mandatory="y" />
+			<column name="titulo_id" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_negocios_fixacoes_titulos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_fixacoes_titulos_negocios_fixacoes" to_schema="public" to_table="negocios_fixacoes" >
+				<fk_column name="negocio_fixacao_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_fixacoes_titulos_titulos_liquidacoes" to_schema="public" to_table="titulos" >
+				<fk_column name="titulo_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_produtos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_id" type="integer" jt="4" mandatory="y" />
+			<column name="is_pagar" type="bool" jt="-7" mandatory="y" />
+			<column name="produto_id" type="integer" jt="4" mandatory="y" />
+			<column name="quantidade" type="numeric" length="15" decimal="3" jt="2" mandatory="y" />
+			<column name="preco" type="numeric" length="14" decimal="2" jt="2" />
+			<column name="indexador_id" type="integer" jt="4" />
+			<column name="valor_total" type="numeric" length="14" decimal="2" jt="2" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_trocas_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_produtos_negocios" to_schema="public" to_table="negocios" delete_action="cascade" update_action="cascade" >
+				<fk_column name="negocio_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_produtos_produtos" to_schema="public" to_table="produtos" update_action="cascade" >
+				<fk_column name="produto_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_produtos_indexadores" to_schema="public" to_table="indexadores" update_action="cascade" >
+				<fk_column name="indexador_id" pk="id" />
+			</fk>
+		</table>
+		<table name="negocios_titulos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="negocio_id" type="integer" jt="4" mandatory="y" />
+			<column name="titulo_id" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_contratos_fixacoes_pagamentos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_negocios_titulos_negocios" to_schema="public" to_table="negocios" delete_action="cascade" update_action="cascade" >
+				<fk_column name="negocio_id" pk="id" />
+			</fk>
+			<fk name="fk_negocios_titulos_titulos" to_schema="public" to_table="titulos" delete_action="cascade" update_action="cascade" >
+				<fk_column name="titulo_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais" >
+			<comment><![CDATA[ICMSTot.VTotTib]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="chave" type="varchar" length="44" decimal="0" jt="12" >
+				<comment><![CDATA[infProt.chNFe]]></comment>
+			</column>
+			<column name="natureza_operacao_id" type="integer" jt="4" />
+			<column name="natureza" type="varchar" length="100" decimal="0" jt="12" >
+				<comment><![CDATA[ide.natOp]]></comment>
+			</column>
+			<column name="presenca" type="smallint" jt="5" >
+				<defo>1</defo>
+				<comment><![CDATA[Type: PRESENCA
+ide.indPres
+0-Não se aplica (NFe complementar ou de ajuste)
+1-Operação presencial
+2-Não presencial, internet
+3-Não presencial, teleatendimento
+4-NFC-e entrega em domicílio
+5-Operação presencial, fora do estabelecimento
+9-Não presencial, outros]]></comment>
+			</column>
+			<column name="modelo" type="varchar" length="3" jt="12" mandatory="y" >
+				<defo>55</defo>
+				<comment><![CDATA[ide.mod]]></comment>
+			</column>
+			<column name="serie" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[ide.serie]]></comment>
+			</column>
+			<column name="nota_fiscal_serie_id" type="integer" jt="4" >
+				<comment><![CDATA[emit]]></comment>
+			</column>
+			<column name="numero" type="integer" jt="4" >
+				<comment><![CDATA[ide.nNF]]></comment>
+			</column>
+			<column name="emissao" type="timestamp" jt="93" mandatory="y" >
+				<defo>now()</defo>
+				<comment><![CDATA[ide.dhEmi]]></comment>
+			</column>
+			<column name="saida" type="timestamp" jt="93" mandatory="y" >
+				<defo>now()</defo>
+				<comment><![CDATA[ide.dhEmi]]></comment>
+			</column>
+			<column name="is_saida" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+				<comment><![CDATA[ide.tpNF
+0 - Entrada
+1 - Saida]]></comment>
+			</column>
+			<column name="tipo_emissao" type="smallint" length="5" decimal="0" jt="5" mandatory="y" >
+				<comment><![CDATA[Type: TIPO_EMISSAO
+ide.tpEmis
+1 - Normal;
+2 - Contingência FS
+3 - Contingência SCAN
+4 - Contingência DPEC
+5 - Contingência FSDA
+6 - Contingência SVC - AN
+7 - Contingência SVC - RS
+9 - Contingência off-line NFC-e]]></comment>
+			</column>
+			<column name="ambiente" type="smallint" jt="5" mandatory="y" >
+				<defo>2</defo>
+				<comment><![CDATA[Type: AMBIENTE
+ide.tpAmb
+1 - Produção
+2 - Homologação]]></comment>
+			</column>
+			<column name="finalidade" type="smallint" jt="5" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[Type: FINALIDADE
+ide.finNFe
+1 - NFe normal
+2 - NFe complementar
+3 - NFe de ajuste
+4 - Devolução/Retorno]]></comment>
+			</column>
+			<column name="is_consumidor" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+				<comment><![CDATA[ide.indFinal
+consumidor final (0-Não;1-Consumidor Final)]]></comment>
+			</column>
+			<column name="contingencia" type="timestamp" jt="93" >
+				<comment><![CDATA[ide.dhCont]]></comment>
+			</column>
+			<column name="contingencia_justificativa" type="varchar" length="256" jt="12" >
+				<comment><![CDATA[ide.xJust]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="pessoa_id" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[emit]]></comment>
+			</column>
+			<column name="frete" type="smallint" jt="5" mandatory="y" >
+				<comment><![CDATA[Type: FRETE
+transp.modFrete
+0 - Remetente (CIF)
+1 - Destinatario (FOB)
+2 - Terceiro
+3 - Remtetente Proprio 
+4 - Destinatario Proprio
+9 - Sem Frete]]></comment>
+			</column>
+			<column name="informacoes_adicionais_fisco" type="varchar" length="2000" decimal="0" jt="12" >
+				<comment><![CDATA[infAdic.infAdFisco]]></comment>
+			</column>
+			<column name="informacoes_complementares" type="varchar" length="5000" decimal="0" jt="12" >
+				<comment><![CDATA[infAdic.infCpl]]></comment>
+			</column>
+			<column name="exportacao_estado_id" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[exporta.UFSaidaPais]]></comment>
+			</column>
+			<column name="exportacao_local_embarque" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[exporta.xLocExporta]]></comment>
+			</column>
+			<column name="exportacao_local_despacho" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[exporta.xLocDespacho]]></comment>
+			</column>
+			<column name="empenho" type="varchar" length="22" jt="12" >
+				<comment><![CDATA[compra.xNEmp]]></comment>
+			</column>
+			<column name="pedido" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[compra.xPed]]></comment>
+			</column>
+			<column name="contrato" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[compra.xCont]]></comment>
+			</column>
+			<column name="status" type="notas_fiscais_status" decimal="0" jt="12" mandatory="y" >
+				<defo>&#039;Digitacao&#039;::notas_fiscais_status</defo>
+				<comment><![CDATA[Digitacao
+Autorizada
+Cancelada
+Inutilizada
+Denegada
+Informada]]></comment>
+			</column>
+			<column name="protocolo_autorizacao" type="varchar" length="20" jt="12" />
+			<column name="total_produto" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vProd]]></comment>
+			</column>
+			<column name="total_frete" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vFrete]]></comment>
+			</column>
+			<column name="total_seguro" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vSeg]]></comment>
+			</column>
+			<column name="total_outro" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vOutro]]></comment>
+			</column>
+			<column name="total_desconto" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vDesc]]></comment>
+			</column>
+			<column name="total_icms_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vBC]]></comment>
+			</column>
+			<column name="total_icms" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vICMS]]></comment>
+			</column>
+			<column name="total_icms_desonerado" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vICMSDeson]]></comment>
+			</column>
+			<column name="total_icms_estado_destinatario" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vICMSUFDest]]></comment>
+			</column>
+			<column name="total_icms_estado_remetente" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vICMSUFRemet]]></comment>
+			</column>
+			<column name="total_icms_st_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vBCST]]></comment>
+			</column>
+			<column name="total_icms_st" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vST]]></comment>
+			</column>
+			<column name="total_fcp" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vFCP]]></comment>
+			</column>
+			<column name="total_fcp_st" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vFCPST]]></comment>
+			</column>
+			<column name="total_fcp_st_retido" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vFCPSTRet]]></comment>
+			</column>
+			<column name="total_fcp_estado_destinatario" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vFCPUFDest]]></comment>
+			</column>
+			<column name="total_ii" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vII]]></comment>
+			</column>
+			<column name="total_ipi" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vIPI]]></comment>
+			</column>
+			<column name="total_ipi_devolucao" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vIPIDevol]]></comment>
+			</column>
+			<column name="total_pis" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vPIS]]></comment>
+			</column>
+			<column name="total_cofins" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vCOFINS]]></comment>
+			</column>
+			<column name="total_nota_fiscal" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[ICMSTot.vNF
+(+) vProd (Somatório do valor de todos os produtos da NF-e);
+(-) vDesc (Somatório do desconto de todos os produtos da NF-e);
+(+) vST (Somatório do valor do ICMS com Substituição Tributária de todos os produtos da NF-e);
+(+) vFrete (Somatório do valor do Frete de todos os produtos da NF-e);
+(+) vSeg (Somatório do valor do seguro de todos os produtos da NF-e);
+(+) vOutro (Somatório do valor de outras despesas de todos os produtos da NF-e);
+(+) vII (Somatório do valor do Imposto de Importação de todos os produtos da NF-e);
+(+) vIPI (Somatório do valor do IPI de todos os produtos da NF-e);
+(+) vServ (Somatório do valor do serviço de todos os itens da NF-e).]]></comment>
+			</column>
+			<column name="total_tributos" type="numeric" length="17" decimal="2" jt="2" />
+			<index name="pk_notas_fiscais_manuais_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_numero_unique" unique="UNIQUE" >
+				<column name="nota_fiscal_serie_id" />
+				<column name="numero" />
+			</index>
+			<constraint name="cns_notas_fiscais_tipo_emissao" >
+				<string>tipo_emissao = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 9])</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_ambiente" >
+				<string>ambiente = ANY (ARRAY[1, 2])</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_finalidade" >
+				<string>(finalidade &gt;= 1) AND (finalidade &lt;= 4)</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_presenca" >
+				<string>presenca = ANY (ARRAY[0, 1, 2, 3, 4, 5, 9])</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_frete" >
+				<string>frete = ANY (ARRAY[0, 1, 2, 3, 4, 9])</string>
+			</constraint>
+			<fk name="fk_notas_fiscais_manuais_series_notas_fiscais" to_schema="public" to_table="notas_fiscais_series" >
+				<fk_column name="nota_fiscal_serie_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_estados" to_schema="public" to_table="estados" update_action="cascade" >
+				<fk_column name="exportacao_estado_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_naturezas_operacao" to_schema="public" to_table="naturezas_operacoes" update_action="cascade" >
+				<fk_column name="natureza_operacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_autorizados" >
+			<comment><![CDATA[autXML]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" />
+			<column name="pessoa_id" type="integer" jt="4" />
+			<column name="cnpj" type="varchar" length="18" decimal="0" jt="12" >
+				<comment><![CDATA[autXML.CNPJ]]></comment>
+			</column>
+			<column name="cpf" type="varchar" length="14" decimal="0" jt="12" >
+				<comment><![CDATA[autXML.CPF]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_autorizados_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_autorizados_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_autorizados_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_cartas_correcoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" mandatory="y" />
+			<column name="numero" type="smallint" jt="5" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[nSeqEvento]]></comment>
+			</column>
+			<column name="correcao" type="varchar" length="1000" jt="12" mandatory="y" >
+				<comment><![CDATA[xCorrecao]]></comment>
+			</column>
+			<column name="protocolo_autorizacao" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[nProt]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_notas_fiscais_cartas_correcoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_cartas_correcoes" unique="UNIQUE" >
+				<column name="nota_fiscal_id" />
+				<column name="numero" />
+			</index>
+			<fk name="fk_notas_fiscais_cartas_correcoes_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_duplicatas" >
+			<comment><![CDATA[dup]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" mandatory="y" />
+			<column name="numero" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[dup.nDup]]></comment>
+			</column>
+			<column name="vencimento" type="date" jt="91" >
+				<comment><![CDATA[dup.dVenc]]></comment>
+			</column>
+			<column name="valor" type="numeric" length="15" decimal="2" jt="2" mandatory="y" >
+				<comment><![CDATA[dup.vDup]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_duplicatas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_duplicatas_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_formas_pagamento" >
+			<comment><![CDATA[pag
+detPag
+fat]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" mandatory="y" />
+			<column name="tipo" type="smallint" jt="5" mandatory="y" >
+				<comment><![CDATA[Type: PAGAMENTO_TIPO
+detPag.tPag
+01 - Dinheiro
+02 - Cheque
+03 - Cartão Crédito
+04 - Cartão Débito
+05 - Crédito Loja
+10 - Vale Alimentação
+11 - Vale Refeição
+12 - Vale Presente
+13 - Vale Combustível
+14 - Duplicata Mercantil
+15 - Boleto Bancário
+90 - Sem Pagamento
+99 - Outros]]></comment>
+			</column>
+			<column name="valor" type="numeric" length="15" decimal="2" jt="2" mandatory="y" >
+				<comment><![CDATA[detPag.vPag
+fat.vOrig
+fat.vLiq]]></comment>
+			</column>
+			<column name="is_prazo" type="bool" jt="-7" >
+				<comment><![CDATA[detPag.indPag]]></comment>
+			</column>
+			<column name="troco" type="numeric" length="15" decimal="2" jt="2" >
+				<comment><![CDATA[pag.vTroco]]></comment>
+			</column>
+			<column name="fatura" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[fat.nFat]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_formas_pagamento_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<constraint name="cns_notas_fiscais_formas_pagamento_tipo" >
+				<string>tipo = ANY (ARRAY[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 90, 99])</string>
+			</constraint>
+			<fk name="fk_notas_fiscais_formas_pagamento_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens" >
+			<comment><![CDATA[prod]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" mandatory="y" />
+			<column name="cfop_id" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[CFOP]]></comment>
+			</column>
+			<column name="quantidade" type="numeric" length="19" decimal="4" jt="2" mandatory="y" >
+				<comment><![CDATA[qCOM]]></comment>
+			</column>
+			<column name="unidade_medida_id" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[uCOM]]></comment>
+			</column>
+			<column name="valor_unitario" type="numeric" length="31" decimal="10" jt="2" mandatory="y" >
+				<comment><![CDATA[vUnCOM]]></comment>
+			</column>
+			<column name="valor_produto" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vProd
+quantidade * valor_unitario]]></comment>
+			</column>
+			<column name="valor_frete" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vFrete]]></comment>
+			</column>
+			<column name="valor_seguro" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vSeg]]></comment>
+			</column>
+			<column name="valor_outro" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vOutro]]></comment>
+			</column>
+			<column name="valor_desconto" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vDesc]]></comment>
+			</column>
+			<column name="entrega_negocio_id" type="integer" jt="4" />
+			<column name="negocio_cultura_movimento_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="produto_barra_id" type="integer" jt="4" >
+				<comment><![CDATA[cProd]]></comment>
+			</column>
+			<column name="codigo" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[cProd]]></comment>
+			</column>
+			<column name="barras" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[cEAN]]></comment>
+			</column>
+			<column name="produto" type="varchar" length="120" jt="12" >
+				<comment><![CDATA[xProd]]></comment>
+			</column>
+			<column name="ncm" type="varchar" length="8" jt="12" >
+				<comment><![CDATA[NCM]]></comment>
+			</column>
+			<column name="beneficio_fiscal" type="varchar" length="10" jt="12" >
+				<comment><![CDATA[cBenef]]></comment>
+			</column>
+			<column name="excecao_tabela_ipi" type="varchar" length="3" jt="12" >
+				<comment><![CDATA[EXTIPI]]></comment>
+			</column>
+			<column name="is_totalizador" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+				<comment><![CDATA[indTot]]></comment>
+			</column>
+			<column name="pedido" type="varchar" length="15" jt="12" >
+				<comment><![CDATA[xPed]]></comment>
+			</column>
+			<column name="pedido_item" type="varchar" length="6" jt="12" >
+				<comment><![CDATA[nItemPed]]></comment>
+			</column>
+			<column name="ficha_conteudo_importacao" type="varchar" length="36" jt="12" >
+				<comment><![CDATA[nFCI]]></comment>
+			</column>
+			<column name="barras_tributacao" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[eEANTrib
+barras]]></comment>
+			</column>
+			<column name="unidade_medida_tributacao_id" type="integer" jt="4" >
+				<comment><![CDATA[uTrib
+unidade_medida_id]]></comment>
+			</column>
+			<column name="quantidade_tributacao" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[qTrib
+quantidade]]></comment>
+			</column>
+			<column name="valor_unitario_tributacao" type="numeric" length="31" decimal="10" jt="2" >
+				<comment><![CDATA[vUnTrib
+valor_produto / quantidade_tributacao]]></comment>
+			</column>
+			<column name="informacoes_adicionais" type="varchar" length="500" jt="12" >
+				<comment><![CDATA[infAdProd.infAdProd]]></comment>
+			</column>
+			<column name="cest" type="varchar" length="7" jt="12" >
+				<comment><![CDATA[CEST]]></comment>
+			</column>
+			<column name="escala_relevante" type="bool" jt="-7" >
+				<comment><![CDATA[indEscala]]></comment>
+			</column>
+			<column name="cnpj_fabricante" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[CNPJFab]]></comment>
+			</column>
+			<column name="valor_total_tributos" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vTotTrib
+Consultar conforme API do IBPT
+https://deolhonoimposto.ibpt.org.br/]]></comment>
+			</column>
+			<index name="pk_notas_fiscais_itens_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_itens_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_itens_cfops" to_schema="public" to_table="cfops" update_action="cascade" >
+				<fk_column name="cfop_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_itens_unidades" to_schema="public" to_table="unidades" update_action="cascade" >
+				<fk_column name="unidade_medida_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_itens_negocios_culturas_movimentos" to_schema="public" to_table="negocios_culturas_movimentos" update_action="cascade" >
+				<fk_column name="negocio_cultura_movimento_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_itens_produtos_barras" to_schema="public" to_table="produtos_barras" update_action="cascade" >
+				<fk_column name="produto_barra_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_itens_unidades_tributacao" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_tributacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens_cofins" >
+			<comment><![CDATA[COFINS
+COFINSST]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_item_id" type="integer" jt="4" mandatory="y" />
+			<column name="cst" type="varchar" length="2" jt="12" >
+				<comment><![CDATA[COFINS.CST]]></comment>
+			</column>
+			<column name="base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[COFINS.vBC]]></comment>
+			</column>
+			<column name="percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[COFINS.pCOFINS]]></comment>
+			</column>
+			<column name="valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[COFINS.vCOFINS]]></comment>
+			</column>
+			<column name="produto_base_calculo" type="numeric" length="20" decimal="4" jt="2" >
+				<comment><![CDATA[COFINS.qBCProd]]></comment>
+			</column>
+			<column name="produto_aliquota" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[COFINS.vAliqProd]]></comment>
+			</column>
+			<column name="st_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[COFINSST.vBC]]></comment>
+			</column>
+			<column name="st_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[COFINSST.pCOFINS]]></comment>
+			</column>
+			<column name="st_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[COFINSST.vCOFINS]]></comment>
+			</column>
+			<column name="st_produto_base_calculo" type="numeric" length="20" decimal="4" jt="2" >
+				<comment><![CDATA[COFINSST.qBCProd]]></comment>
+			</column>
+			<column name="st_produto_aliquota" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[COFINSST.vAliqProd]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_itens_pis_cofins_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_itens_cofins" unique="UNIQUE" >
+				<column name="nota_fiscal_item_id" />
+			</index>
+			<fk name="fk_notas_fiscais_itens_cofins_notas_fiscais_itens" to_schema="public" to_table="notas_fiscais_itens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_item_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens_icms" >
+			<comment><![CDATA[ICMS
+ICMSPart
+ICMSST]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_item_id" type="integer" jt="4" mandatory="y" />
+			<column name="origem" type="smallint" jt="5" >
+				<comment><![CDATA[Type: ORIGEM_ICMS
+orig
+0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;
+1 - Estrangeira - Importação direta, exceto a indicada no código 6;
+2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;
+3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%;
+4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;
+5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%;
+6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;
+7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante em lista da CAMEX e gás natural.
+8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%;]]></comment>
+			</column>
+			<column name="cst" type="varchar" length="2" jt="12" >
+				<comment><![CDATA[CST]]></comment>
+			</column>
+			<column name="csosn" type="varchar" length="3" jt="12" >
+				<comment><![CDATA[CSOSN]]></comment>
+			</column>
+			<column name="base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBC]]></comment>
+			</column>
+			<column name="percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pICMS]]></comment>
+			</column>
+			<column name="valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMS]]></comment>
+			</column>
+			<column name="base_calculo_modalidade" type="smallint" length="5" decimal="0" jt="5" >
+				<comment><![CDATA[Type: BASE_CALCULO_MODALIDADE
+modBC
+0 - Margem Valor Agregado (%); 
+1 - Pauta (valor); 
+2 - Preço Tabelado Máximo (valor); 
+3 - Valor da Operação.]]></comment>
+			</column>
+			<column name="base_calculo_percentual_reducao" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pRedBC]]></comment>
+			</column>
+			<column name="st_base_calculo_modalidade" type="smallint" length="5" decimal="0" jt="5" >
+				<comment><![CDATA[Type: ST_BASE_CALCULO_MODALIDADE
+modBCST
+0 - Preço tabelado ou máximo sugerido; 
+1 - Lista Negativa (valor); 
+2 - Lista Positiva (valor); 
+3 - Lista Neutra (valor); 
+4 - Margem Valor Agregado (%); 
+5 - Pauta (valor).]]></comment>
+			</column>
+			<column name="st_percentual_margem" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pMVAST]]></comment>
+			</column>
+			<column name="st_base_calculo_percentual_reducao" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pRedBCST]]></comment>
+			</column>
+			<column name="st_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCST]]></comment>
+			</column>
+			<column name="st_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pICMSST]]></comment>
+			</column>
+			<column name="st_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSST]]></comment>
+			</column>
+			<column name="fcp_percentual" type="numeric" length="5" decimal="4" jt="2" >
+				<comment><![CDATA[pFCP]]></comment>
+			</column>
+			<column name="fcp_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vFCP]]></comment>
+			</column>
+			<column name="fcp_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCFCP]]></comment>
+			</column>
+			<column name="fcp_st_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCFCPST]]></comment>
+			</column>
+			<column name="fcp_st_percentual" type="numeric" length="5" decimal="4" jt="2" >
+				<comment><![CDATA[pFCPST]]></comment>
+			</column>
+			<column name="fcp_st_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vFCPST]]></comment>
+			</column>
+			<column name="desoneracao_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSDeson]]></comment>
+			</column>
+			<column name="desoneracao_motivo" type="smallint" length="5" decimal="0" jt="5" >
+				<comment><![CDATA[Type: DESONERACAO_MOTIVO
+motDesICMS
+1 - Táxi;
+2 - Deficiente Físico;
+3 - Produtor Agropecuário;
+4 - Frotista/Locadora;
+5 - Diplomático/Consular;
+6 - Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 - CONTRAN e suas alterações);
+7 - SUFRAMA;
+8 – Venda a Órgãos Públicos;
+9 - outros.
+10- Deficiente Condutor;
+11- Deficiente não condutor;
+16 - Olimpíadas Rio 2016;
+90 - Solicitação do Fisco.]]></comment>
+			</column>
+			<column name="op_base_calculo_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pBCOp]]></comment>
+			</column>
+			<column name="op_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSOp]]></comment>
+			</column>
+			<column name="diferimento_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pDif]]></comment>
+			</column>
+			<column name="diferimento_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSDif]]></comment>
+			</column>
+			<column name="st_retido_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCSTRet]]></comment>
+			</column>
+			<column name="st_retido_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSSTRet]]></comment>
+			</column>
+			<column name="consumidor_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pST]]></comment>
+			</column>
+			<column name="fcp_st_retido_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCFCPSTRet]]></comment>
+			</column>
+			<column name="fcp_st_retido_percentual" type="numeric" length="5" decimal="4" jt="2" >
+				<comment><![CDATA[pFCPSTRet]]></comment>
+			</column>
+			<column name="fcp_st_retido_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vFCPSTRet]]></comment>
+			</column>
+			<column name="efetivo_base_calculo_percentual_reducao" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pRedBCEfet]]></comment>
+			</column>
+			<column name="efetivo_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCEfet]]></comment>
+			</column>
+			<column name="efetivo_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[pICMSEfet]]></comment>
+			</column>
+			<column name="efetivo_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSEfet]]></comment>
+			</column>
+			<column name="substituto_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSSubstituto]]></comment>
+			</column>
+			<column name="st_estado_id" type="integer" jt="4" >
+				<comment><![CDATA[UFST]]></comment>
+			</column>
+			<column name="destino_st_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vBCSTDest]]></comment>
+			</column>
+			<column name="destino_st_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vICMSSTDest]]></comment>
+			</column>
+			<column name="simples_credito_percentual" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[pCredSN]]></comment>
+			</column>
+			<column name="simples_credito_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[vCredICMSSN]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_itens_pis_cofins_id_3" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_itens_icms" unique="UNIQUE" >
+				<column name="nota_fiscal_item_id" />
+			</index>
+			<constraint name="cns_notas_fiscais_itens_icms_orig" >
+				<string>(origem &gt;= 0) AND (origem &lt;= 8)</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_itens_icms_desoneracao_motivo" >
+				<string>desoneracao_motivo = ANY (ARRAY[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 16, 90])</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_itens_icms_st_base_calculo_modalidade" >
+				<string>(st_base_calculo_modalidade &gt;= 0) AND (st_base_calculo_modalidade &lt;= 5)</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_itens_icms_base_calculo_modalidade" >
+				<string>(base_calculo_modalidade &gt;= 0) AND (base_calculo_modalidade &lt;= 3)</string>
+			</constraint>
+			<fk name="fk_notas_fiscais_itens_icms_notas_fiscais_itens" to_schema="public" to_table="notas_fiscais_itens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_item_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_itens_icms_estados" to_schema="public" to_table="estados" update_action="cascade" >
+				<fk_column name="st_estado_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens_impostos_devolucoes" >
+			<comment><![CDATA[impostoDevol]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_item_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[impostoDevol.pDevol]]></comment>
+			</column>
+			<column name="ipi_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[impostoDevol.vIPIDevol]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_itens_pis_cofins_id_2" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_itens_impostos_devolucoes" unique="UNIQUE" >
+				<column name="nota_fiscal_item_id" />
+			</index>
+			<fk name="fk_notas_fiscais_itens_imposto_devolucao_notas_fiscais_itens" to_schema="public" to_table="notas_fiscais_itens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_item_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens_ipi" >
+			<comment><![CDATA[IPI]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_item_id" type="integer" jt="4" mandatory="y" />
+			<column name="cst" type="varchar" length="2" jt="12" >
+				<comment><![CDATA[IPI.CST]]></comment>
+			</column>
+			<column name="base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[IPI.vBC]]></comment>
+			</column>
+			<column name="percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[IPI.pIPI]]></comment>
+			</column>
+			<column name="valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[IPI.vIPI]]></comment>
+			</column>
+			<column name="cnpj_produtor" type="numeric" length="14" decimal="0" jt="2" >
+				<comment><![CDATA[IPI.cnpjProd]]></comment>
+			</column>
+			<column name="codigo_selo" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[IPI.cSelo]]></comment>
+			</column>
+			<column name="quantidade_selo" type="numeric" length="15" decimal="0" jt="2" >
+				<comment><![CDATA[IPI.qSelo]]></comment>
+			</column>
+			<column name="codigo_enquadramento" type="varchar" length="3" jt="12" >
+				<comment><![CDATA[IPI.cEnq]]></comment>
+			</column>
+			<column name="quantidade_unidade" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[IPI.qUnid]]></comment>
+			</column>
+			<column name="valor_unidade" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[IPI.vUnid]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_itens_pis_cofins_id_1" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_itens_ipi" unique="UNIQUE" >
+				<column name="nota_fiscal_item_id" />
+			</index>
+			<fk name="fk_notas_fiscais_itens_ipi_notas_fiscais_itens" to_schema="public" to_table="notas_fiscais_itens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_item_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens_nves" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_item_id" type="integer" jt="4" />
+			<column name="nve" type="varchar" length="6" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="idx_notas_fiscais_itens_nves_unique" unique="UNIQUE" >
+				<column name="nota_fiscal_item_id" />
+				<column name="nve" />
+			</index>
+			<index name="pk_notas_fiscais_itens_nves_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_itens_nve_notas_fiscais_itens" to_schema="public" to_table="notas_fiscais_itens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_item_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_itens_pis" >
+			<comment><![CDATA[PIS
+PISST]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_item_id" type="integer" jt="4" mandatory="y" />
+			<column name="cst" type="varchar" length="2" jt="12" >
+				<comment><![CDATA[PIS.CST]]></comment>
+			</column>
+			<column name="base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[PIS.vBC]]></comment>
+			</column>
+			<column name="percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[PIS.pPIS]]></comment>
+			</column>
+			<column name="valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[PIS.vPIS]]></comment>
+			</column>
+			<column name="produto_base_calculo" type="numeric" length="20" decimal="4" jt="2" >
+				<comment><![CDATA[PIS.qBCProd]]></comment>
+			</column>
+			<column name="produto_aliquota" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[PIS.vAliqProd]]></comment>
+			</column>
+			<column name="st_base_calculo" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[PISST.vBC]]></comment>
+			</column>
+			<column name="st_percentual" type="numeric" length="9" decimal="4" jt="2" >
+				<comment><![CDATA[PISST.pPIS]]></comment>
+			</column>
+			<column name="st_valor" type="numeric" length="17" decimal="2" jt="2" >
+				<comment><![CDATA[PISST.vPIS]]></comment>
+			</column>
+			<column name="st_produto_base_calculo" type="numeric" length="20" decimal="4" jt="2" >
+				<comment><![CDATA[PISST.qBCProd]]></comment>
+			</column>
+			<column name="st_produto_aliquota" type="numeric" length="19" decimal="4" jt="2" >
+				<comment><![CDATA[PISST.vAliqProd]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_itens_pis_cofins_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_itens_pis" unique="UNIQUE" >
+				<column name="nota_fiscal_item_id" />
+			</index>
+			<fk name="fk_notas_fiscais_itens_pis_cofins_notas_fiscais_itens" to_schema="public" to_table="notas_fiscais_itens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_item_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_localizacoes" >
+			<comment><![CDATA[dest
+enderDest
+retirada
+entrega]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="tipo" type="notas_fiscais_localizacoes_tipo" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[Type: NOTA_FISCAL_LOCALIZACAO_TIPO
+Destinatario - enderDest
+Retirada - retirada
+Entrega - entrega]]></comment>
+			</column>
+			<column name="localizacao_id" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[enderEmit]]></comment>
+			</column>
+			<column name="razao_social" type="varchar" length="100" decimal="0" jt="12" >
+				<comment><![CDATA[dest.xNome
+retirada.xNome
+entrega.xNome]]></comment>
+			</column>
+			<column name="cnpj" type="varchar" length="18" decimal="0" jt="12" >
+				<comment><![CDATA[dest.CNPJ
+retirada.CNPJ
+entrega.CNPJ]]></comment>
+			</column>
+			<column name="cpf" type="varchar" length="14" decimal="0" jt="12" >
+				<comment><![CDATA[dest.CPF
+retirada.CPF
+entrega.CPF]]></comment>
+			</column>
+			<column name="inscricao_estrangeiro" type="varchar" length="25" decimal="0" jt="12" >
+				<comment><![CDATA[dest.idEstrangeiro]]></comment>
+			</column>
+			<column name="inscricao_estadual_indicador" type="smallint" length="5" decimal="0" jt="5" >
+				<comment><![CDATA[Type: INSCRICAO_ESTADUAL_INDICADOR
+dest.indIEDest
+1 - Contribuinte ICMS
+2 - Isento
+9 - Nao Contribuinte]]></comment>
+			</column>
+			<column name="inscricao_estadual" type="varchar" length="15" decimal="0" jt="12" >
+				<comment><![CDATA[dest.IE
+retirada.IE
+entrega.IE]]></comment>
+			</column>
+			<column name="inscricao_suframa" type="numeric" length="9" decimal="0" jt="2" >
+				<comment><![CDATA[dest.ISUF]]></comment>
+			</column>
+			<column name="inscricao_municipal" type="varchar" length="15" decimal="0" jt="12" >
+				<comment><![CDATA[dest.IM]]></comment>
+			</column>
+			<column name="email" type="varchar" length="50" decimal="0" jt="12" >
+				<comment><![CDATA[dest.email
+retirada.email
+entrega.email]]></comment>
+			</column>
+			<column name="endereco" type="varchar" length="100" decimal="0" jt="12" >
+				<comment><![CDATA[enderDest.xLgr
+retirada.xLgr
+entrega.xLgr]]></comment>
+			</column>
+			<column name="numero" type="varchar" length="10" decimal="0" jt="12" >
+				<comment><![CDATA[enderDest.nro
+retirada.nro
+entrega.nro]]></comment>
+			</column>
+			<column name="complemento" type="varchar" length="50" jt="12" >
+				<comment><![CDATA[enderDest.xCpl
+retirada.xCpl
+entrega.xCpl]]></comment>
+			</column>
+			<column name="bairro" type="varchar" length="50" jt="12" >
+				<comment><![CDATA[enderDest.xBairro
+retirada.xBairro
+entrega.xBairro]]></comment>
+			</column>
+			<column name="cidade_id" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[enderDest.cMun/xMun
+retirada.cMun/xMun
+entrega.cMun/xMun]]></comment>
+			</column>
+			<column name="cep" type="varchar" length="10" decimal="0" jt="12" >
+				<comment><![CDATA[enderDest.CEP
+retirada.CEP
+entrega.CEP]]></comment>
+			</column>
+			<column name="fone" type="varchar" length="14" decimal="0" jt="12" >
+				<comment><![CDATA[enderDest.fone
+retirada.fone
+entrega.fone]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_enderecos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_localizacoes_nota_fiscal_id_tipo_unique" unique="UNIQUE" >
+				<column name="nota_fiscal_id" />
+				<column name="tipo" />
+			</index>
+			<constraint name="cns_notas_fiscais_localizacoes" >
+				<string>inscricao_estadual_indicador in (1, 2, 9)</string>
+			</constraint>
+			<fk name="fk_notas_fiscais_enderecos_localizacoes" to_schema="public" to_table="localizacoes" update_action="cascade" >
+				<fk_column name="localizacao_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_enderecos_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_localizacoes_cidades" to_schema="public" to_table="cidades" update_action="cascade" >
+				<fk_column name="cidade_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_observacoes" >
+			<comment><![CDATA[obsCont
+obsFisco]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="is_fisco" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
+				<defo>false</defo>
+				<comment><![CDATA[FALSE - obsCont
+TRUE - obsFisco]]></comment>
+			</column>
+			<column name="campo" type="varchar" length="20" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[xCampo]]></comment>
+			</column>
+			<column name="texto" type="varchar" length="60" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[xTexto]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_observacoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_observacoes_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_processos" >
+			<comment><![CDATA[procRef]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="numero" type="varchar" length="60" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[procRef.nProc]]></comment>
+			</column>
+			<column name="origem" type="smallint" length="5" decimal="0" jt="5" mandatory="y" >
+				<comment><![CDATA[Type: ORIGEM_PROCESSO
+procRef.indProc
+0 - SEFAZ
+1 - Justica Federal
+2 - Justica Estadual
+3 - Secex/RFB
+9 - Outros]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_observacoes_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<constraint name="cns_notas_fiscais_observacoes_origem" >
+				<string>origem = ANY (ARRAY[0, 1, 2, 3, 9])</string>
+			</constraint>
+			<fk name="fk_notas_fiscais_processos_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_referenciadas" >
+			<comment><![CDATA[refNFe
+refNF
+refNFP
+refCTe
+refECF]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" mandatory="y" />
+			<column name="tipo" type="notas_fiscais_referenciadas_tipo" decimal="0" jt="12" mandatory="y" >
+				<defo>&#039;NFe&#039;::notas_fiscais_referenciadas_tipo</defo>
+				<comment><![CDATA[Type: NOTA_FISCAL_REFERENCIADA_TIPO
+NFe
+NF
+NFP
+CTe
+ECF]]></comment>
+			</column>
+			<column name="chave" type="varchar" length="44" decimal="0" jt="12" >
+				<comment><![CDATA[refNFe.refNFe
+refCTe.refCTe]]></comment>
+			</column>
+			<column name="estado_id" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[refNF.cUF
+refNFP.cUF]]></comment>
+			</column>
+			<column name="emissao" type="date" jt="91" >
+				<comment><![CDATA[refNF.AAMM
+refNFP.AAMM]]></comment>
+			</column>
+			<column name="cnpj" type="numeric" length="14" decimal="0" jt="2" >
+				<comment><![CDATA[refNF.CNPJ
+refNFP.CNPJ]]></comment>
+			</column>
+			<column name="cpf" type="numeric" length="11" decimal="0" jt="2" >
+				<comment><![CDATA[refNFP.CPF]]></comment>
+			</column>
+			<column name="inscricao_estadual" type="varchar" length="15" decimal="0" jt="12" >
+				<comment><![CDATA[refNFP.IE]]></comment>
+			</column>
+			<column name="modelo" type="varchar" length="3" jt="12" >
+				<comment><![CDATA[Type: NOTA_FISCAL_REFERENCIADA_MODELO
+refNF.mod
+refNFP.mod
+refECF.mod
+'01' - '1/1A'
+'02' - '02'
+'04' - '04'
+'2B' - '2B - Cupom Fiscal não ECF'
+'2C' - '2C - Cupom Fiscal PDV'
+'2D' - '2D - Cupom Fiscal ECF']]></comment>
+			</column>
+			<column name="serie" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[refNF.serie
+refNFP.serie]]></comment>
+			</column>
+			<column name="numero" type="integer" jt="4" >
+				<comment><![CDATA[refNF.nNF
+refNFP.nNF
+refECF.nECF]]></comment>
+			</column>
+			<column name="coo" type="integer" jt="4" >
+				<comment><![CDATA[refECF.nCOO]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_notas_fiscais_referenciadas_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_referenciadas_nf" unique="UNIQUE" >
+				<column name="nota_fiscal_id" />
+				<column name="cnpj" />
+				<column name="modelo" />
+				<column name="serie" />
+				<column name="numero" />
+			</index>
+			<index name="idx_notas_fiscais_referenciadas_nfe" unique="UNIQUE" >
+				<column name="nota_fiscal_id" />
+				<column name="chave" />
+			</index>
+			<index name="idx_notas_fiscais_referenciadas_nfp" unique="UNIQUE" >
+				<column name="nota_fiscal_id" />
+				<column name="cnpj" />
+				<column name="cpf" />
+				<column name="inscricao_estadual" />
+				<column name="modelo" />
+				<column name="serie" />
+				<column name="numero" />
+			</index>
+			<index name="idx_notas_fiscais_referenciadas_ecf" unique="NORMAL" >
+				<column name="nota_fiscal_id" />
+				<column name="modelo" />
+				<column name="numero" />
+				<column name="coo" />
+			</index>
+			<constraint name="cns_notas_fiscais_referenciadas_modelo" >
+				<string>modelo in (&#039;01&#039;, &#039;02&#039;, &#039;04&#039;, &#039;2B&#039;, &#039;2C&#039;, &#039;2D&#039;)</string>
+			</constraint>
+			<fk name="fk_notas_fiscais_referenciadas_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_referenciadas_estados" to_schema="public" to_table="estados" update_action="cascade" >
+				<fk_column name="estado_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_series" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="20" jt="12" mandatory="y" />
+			<column name="pessoa_id" type="integer" jt="4" mandatory="y" />
+			<column name="serie" type="integer" jt="4" mandatory="y" />
+			<column name="ultima_nota_emitida" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="modelo" type="varchar" length="3" jt="12" mandatory="y" >
+				<defo>(55)::character varying(3)</defo>
+			</column>
+			<column name="formato" type="smallint" jt="5" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[ide.tpImp
+0-sem DANFE
+1-DANFe Retrato
+2-DANFe Paisagem
+3-DANFe Simplificado
+4-DANFe NFC-e
+5-DANFe NFC-e em mensagem eletrônica]]></comment>
+			</column>
+			<column name="ambiente" type="smallint" jt="5" mandatory="y" >
+				<defo>2</defo>
+				<comment><![CDATA[ide.tpAmb
+1 - Produção
+2 - Homologação]]></comment>
+			</column>
+			<column name="localizacao_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[enderEmit]]></comment>
+			</column>
+			<column name="senha_certificado" type="varchar" length="100" jt="12" />
+			<index name="pk_series_notas_fiscais_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<constraint name="cns_notas_fiscais_series_modelo" >
+				<string>(modelo)::text = &#039;55&#039;::text</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_series_formato" >
+				<string>(formato &gt;= 0) AND (formato &lt;= 5)</string>
+			</constraint>
+			<constraint name="cns_notas_fiscais_series_ambiente" >
+				<string>ambiente = ANY (ARRAY[1, 2])</string>
+			</constraint>
+			<fk name="fk_series_notas_fiscais_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_series_localizacoes" to_schema="public" to_table="localizacoes" update_action="cascade" >
+				<fk_column name="localizacao_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_transportes" >
+			<comment><![CDATA[transporta
+retTransp
+veicTransp
+vagao]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_id" type="integer" jt="4" mandatory="y" />
+			<column name="localizacao_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="razao_social" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[tranporta.xNome]]></comment>
+			</column>
+			<column name="inscricao_estadual" type="varchar" length="15" decimal="0" jt="12" >
+				<comment><![CDATA[transporta.IE]]></comment>
+			</column>
+			<column name="cnpj" type="varchar" length="18" decimal="0" jt="12" >
+				<comment><![CDATA[transporta.CNPJ]]></comment>
+			</column>
+			<column name="cpf" type="varchar" length="14" decimal="0" jt="12" >
+				<comment><![CDATA[transporta.CPF]]></comment>
+			</column>
+			<column name="endereco" type="varchar" length="100" decimal="0" jt="12" >
+				<comment><![CDATA[transporta.ender]]></comment>
+			</column>
+			<column name="cidade_id" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[transporta.cMun/xMun]]></comment>
+			</column>
+			<column name="retencao_valor_servico" type="numeric" length="15" decimal="2" jt="2" >
+				<comment><![CDATA[retTransp.vServ]]></comment>
+			</column>
+			<column name="retencao_base_calculo" type="numeric" length="15" decimal="2" jt="2" >
+				<comment><![CDATA[retTransp.vBCRet]]></comment>
+			</column>
+			<column name="retencao_percentual" type="numeric" length="7" decimal="4" jt="2" >
+				<comment><![CDATA[retTransp.pICMSRet]]></comment>
+			</column>
+			<column name="retencao_valor" type="numeric" length="15" decimal="2" jt="2" >
+				<comment><![CDATA[retTransp.vICMSRet]]></comment>
+			</column>
+			<column name="retencao_cfop_id" type="integer" jt="4" >
+				<comment><![CDATA[retTransp.CFOP]]></comment>
+			</column>
+			<column name="retencao_cidade_id" type="integer" jt="4" >
+				<comment><![CDATA[retTransp.cMunFG]]></comment>
+			</column>
+			<column name="caminhao_id" type="integer" jt="4" />
+			<column name="caminhao_placa" type="varchar" length="7" jt="12" >
+				<comment><![CDATA[veicTransp.placa]]></comment>
+			</column>
+			<column name="caminhao_estado_id" type="integer" jt="4" >
+				<comment><![CDATA[veicTransp.UF]]></comment>
+			</column>
+			<column name="caminhao_antt" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[veicTransp.RNTC]]></comment>
+			</column>
+			<column name="vagao" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[vagao.vagao]]></comment>
+			</column>
+			<column name="balsa" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[balsa.balsa]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_transporte_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_notas_fiscais_transporte_nota_fiscal_id" unique="UNIQUE" >
+				<column name="nota_fiscal_id" />
+			</index>
+			<fk name="fk_notas_fiscais_transporte_notas_fiscais" to_schema="public" to_table="notas_fiscais" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_localizacoes" to_schema="public" to_table="localizacoes" >
+				<fk_column name="localizacao_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_cidades" to_schema="public" to_table="cidades" >
+				<fk_column name="cidade_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_cfops" to_schema="public" to_table="cfops" update_action="cascade" >
+				<fk_column name="retencao_cfop_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_caminhoes" to_schema="public" to_table="caminhoes" >
+				<fk_column name="caminhao_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_estados" to_schema="public" to_table="estados" update_action="cascade" >
+				<fk_column name="caminhao_estado_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transportes_cidades" to_schema="public" to_table="cidades" update_action="cascade" >
+				<fk_column name="retencao_cidade_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_transportes_reboques" >
+			<comment><![CDATA[reboque]]></comment>
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_transporte_id" type="integer" jt="4" mandatory="y" />
+			<column name="reboque_id" type="integer" jt="4" />
+			<column name="placa" type="varchar" length="7" jt="12" mandatory="y" >
+				<comment><![CDATA[reboque.placa]]></comment>
+			</column>
+			<column name="estado_id" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[reboque.UF]]></comment>
+			</column>
+			<column name="antt" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[reboque.RNTC]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_transporte_reboques_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_transporte_reboques_notas_fiscais_transporte" to_schema="public" to_table="notas_fiscais_transportes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_transporte_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_reboques_estados" to_schema="public" to_table="estados" update_action="cascade" >
+				<fk_column name="estado_id" pk="id" />
+			</fk>
+			<fk name="fk_notas_fiscais_transporte_reboques_reboques" to_schema="public" to_table="reboques" update_action="cascade" >
+				<fk_column name="reboque_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_transportes_volumes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_transporte_id" type="integer" jt="4" mandatory="y" />
+			<column name="quantidade" type="numeric" length="15" decimal="0" jt="2" >
+				<comment><![CDATA[vol.qVol]]></comment>
+			</column>
+			<column name="especie" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[vol.esp]]></comment>
+			</column>
+			<column name="marca" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[vol.marca]]></comment>
+			</column>
+			<column name="numeracao" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[vol.nVol]]></comment>
+			</column>
+			<column name="peso_bruto" type="numeric" length="15" decimal="3" jt="2" >
+				<comment><![CDATA[vol.pesoB]]></comment>
+			</column>
+			<column name="peso_liquido" type="numeric" length="15" decimal="3" jt="2" >
+				<comment><![CDATA[vol.pesoL]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_transporte_volumes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_transporte_volumes_notas_fiscais_transporte" to_schema="public" to_table="notas_fiscais_transportes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_transporte_id" pk="id" />
+			</fk>
+		</table>
+		<table name="notas_fiscais_transportes_volumes_lacres" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nota_fiscal_transporte_volume_id" type="integer" jt="4" mandatory="y" />
+			<column name="numero" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[lacres.nLacre]]></comment>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_notas_fiscais_transpote_volumes_lacres_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_notas_fiscais_transpote_volumes_lacres_notas_fiscais_transpo" to_schema="public" to_table="notas_fiscais_transportes_volumes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="nota_fiscal_transporte_volume_id" pk="id" />
+			</fk>
+		</table>
+		<table name="oauth_access_tokens" >
+			<column name="id" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="user_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="client_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="scopes" type="text" decimal="0" jt="12" />
+			<column name="revoked" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="expires_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="oauth_access_tokens_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="oauth_access_tokens_user_id_index" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+		</table>
+		<table name="oauth_auth_codes" >
+			<column name="id" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="user_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="client_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="scopes" type="text" decimal="0" jt="12" />
+			<column name="revoked" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="expires_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="oauth_auth_codes_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="oauth_clients" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="name" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="secret" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="redirect" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="personal_access_client" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="password_client" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="revoked" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<index name="oauth_clients_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="oauth_clients_user_id_index" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+		</table>
+		<table name="oauth_personal_access_clients" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="client_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<index name="oauth_personal_access_clients_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="oauth_personal_access_clients_client_id_index" unique="NORMAL" >
+				<column name="client_id" />
+			</index>
+		</table>
+		<table name="oauth_refresh_tokens" >
+			<column name="id" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="access_token_id" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="revoked" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="expires_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="oauth_refresh_tokens_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="oauth_refresh_tokens_access_token_id_index" unique="NORMAL" >
+				<column name="access_token_id" />
+			</index>
+		</table>
+		<table name="paises" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="codigo" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="nome" type="varchar" length="80" decimal="0" jt="12" mandatory="y" />
+			<column name="sigla" type="varchar" length="3" decimal="0" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="paises_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="paises_codigo_unique" unique="UNIQUE" >
+				<column name="codigo" />
+			</index>
+		</table>
+		<table name="permissions" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="code" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="description" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="permissions_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="permissions_code_unique" unique="UNIQUE" >
+				<column name="code" />
+			</index>
+			<index name="permissions_name_unique" unique="UNIQUE" >
+				<column name="name" />
+			</index>
+		</table>
+		<table name="pessoas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="grupo_economico_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="cpf" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="cnpj" type="varchar" length="18" decimal="0" jt="12" />
+			<column name="inscricao_estrangeiro" type="varchar" length="25" jt="12" />
+			<column name="inscricao_estadual_indicador" type="smallint" length="5" decimal="0" jt="5" mandatory="y" >
+				<comment><![CDATA[dest.indIEDest
+1 - Contribuinte ICMS
+2 - Isento
+9 - Nao Contribuinte]]></comment>
+			</column>
+			<column name="inscricao_estadual" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="inscricao_suframa" type="numeric" length="9" decimal="0" jt="2" />
+			<column name="inscricao_municipal" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="razao_social" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="is_consumidor" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="cnae" type="numeric" length="7" decimal="0" jt="2" />
+			<column name="crt" type="smallint" jt="5" />
+			<index name="pessoa_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<constraint name="cns_pessoas_crt" >
+				<string>crt = ANY (ARRAY[1, 2, 3])</string>
+			</constraint>
+			<constraint name="cns_pessoas_inscricao_estadual_indicador" >
+				<string>inscricao_estadual_indicador in (1, 2, 9)</string>
+			</constraint>
+			<fk name="pessoa_grupo_economico_id_foreign" to_schema="public" to_table="grupos_economicos" update_action="cascade" >
+				<fk_column name="grupo_economico_id" pk="id" />
+			</fk>
+		</table>
+		<table name="produtores" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_produtor_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unique_produto_nome" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+		</table>
+		<table name="produtos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="sub_grupo_produto_id" type="integer" jt="4" />
+			<column name="nome" type="varchar" length="120" jt="12" mandatory="y" />
+			<column name="unidade_medida_id" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="ncm" type="varchar" length="8" jt="12" />
+			<column name="cest" type="varchar" length="7" jt="12" >
+				<comment><![CDATA[CEST]]></comment>
+			</column>
+			<column name="beneficio_fiscal" type="varchar" length="10" jt="12" >
+				<comment><![CDATA[cBenef]]></comment>
+			</column>
+			<column name="excecao_tabela_ipi" type="varchar" length="3" jt="12" >
+				<comment><![CDATA[EXTIPI]]></comment>
+			</column>
+			<column name="informacoes_adicionais" type="varchar" length="500" jt="12" >
+				<comment><![CDATA[infAdProd.infAdProd]]></comment>
+			</column>
+			<column name="escala_relevante" type="bool" jt="-7" >
+				<comment><![CDATA[indEscala]]></comment>
+			</column>
+			<column name="cnpj_fabricante" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[CNPJFab]]></comment>
+			</column>
+			<column name="origem" type="smallint" jt="5" >
+				<comment><![CDATA[ICMS.orig]]></comment>
+			</column>
+			<index name="pk_produto_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<constraint name="cns_produtos_orig" >
+				<string>(origem &gt;= 0) AND (origem &lt;= 8)</string>
+			</constraint>
+			<fk name="fk_produtos_produtor" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_produtos_sub_grupos_produtos" to_schema="public" to_table="sub_grupos_produtos" update_action="cascade" >
+				<fk_column name="sub_grupo_produto_id" pk="id" />
+			</fk>
+			<fk name="fk_produtos_unidades" to_schema="public" to_table="unidades" update_action="cascade" >
+				<fk_column name="unidade_medida_id" pk="id" />
+			</fk>
+		</table>
+		<table name="produtos_barras" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produto_variacao_id" type="integer" jt="4" mandatory="y" />
+			<column name="produto_embalagem_id" type="integer" jt="4" />
+			<column name="barras" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_produtos_barras_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_produtos_barras_produtos_variacoes" to_schema="public" to_table="produtos_variacoes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="produto_variacao_id" pk="id" />
+			</fk>
+			<fk name="fk_produtos_barras_produtos_embalagens" to_schema="public" to_table="produtos_embalagens" delete_action="cascade" update_action="cascade" >
+				<fk_column name="produto_embalagem_id" pk="id" />
+			</fk>
+		</table>
+		<table name="produtos_embalagens" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produto_id" type="integer" jt="4" mandatory="y" />
+			<column name="quantidade" type="integer" jt="4" />
+			<column name="unidade_medida_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_produtos_embalagens_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_produtos_embalagens_produtos" to_schema="public" to_table="produtos" delete_action="cascade" update_action="cascade" >
+				<fk_column name="produto_id" pk="id" />
+			</fk>
+			<fk name="fk_produtos_embalagens_unidades" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_id" pk="id" />
+			</fk>
+		</table>
+		<table name="produtos_variacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produto_id" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="pk_produtos_variacoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_produtos_variacoes_produtos" to_schema="public" to_table="produtos" delete_action="cascade" update_action="cascade" >
+				<fk_column name="produto_id" pk="id" />
+			</fk>
+		</table>
+		<table name="reboques" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="placa" type="varchar" length="7" jt="12" />
+			<column name="estado_id" type="integer" jt="4" />
+			<column name="antt" type="varchar" length="20" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="produtor_id" type="integer" length="10" decimal="0" jt="4" />
+			<index name="pk_reboques_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_reboques_produtores" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="revisions" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="revisionable_type" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="revisionable_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="user_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="key" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="old_value" type="text" decimal="0" jt="12" />
+			<column name="new_value" type="text" decimal="0" jt="12" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<index name="revisions_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="revisions_revisionable_id_revisionable_type_index" unique="NORMAL" >
+				<column name="revisionable_id" />
+				<column name="revisionable_type" />
+			</index>
+		</table>
+		<table name="role_permissions" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="role_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="permission_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<index name="role_permissions_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="role_permissions_role_id_permission_id_unique" unique="UNIQUE" >
+				<column name="role_id" />
+				<column name="permission_id" />
+			</index>
+			<fk name="role_permissions_permission_id_foreign" to_schema="public" to_table="permissions" >
+				<fk_column name="permission_id" pk="id" />
+			</fk>
+			<fk name="role_permissions_role_id_foreign" to_schema="public" to_table="roles" delete_action="cascade" >
+				<fk_column name="role_id" pk="id" />
+			</fk>
+		</table>
+		<table name="roles" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="name" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="code" type="varchar" length="30" decimal="0" jt="12" mandatory="y" />
+			<column name="description" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="roles_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="roles_code_unique" unique="UNIQUE" >
+				<column name="code" />
+			</index>
+			<index name="roles_name_unique" unique="UNIQUE" >
+				<column name="name" />
+			</index>
+		</table>
+		<table name="safra_culturas" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="safra_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="cultura_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="unidade_medida_pesagem_id" type="integer" jt="4" mandatory="y" >
+				<defo>6</defo>
+			</column>
+			<column name="unidade_medida_preco_id" type="integer" jt="4" mandatory="y" >
+				<defo>10</defo>
+			</column>
+			<column name="unidade_medida_area_id" type="integer" jt="4" mandatory="y" >
+				<defo>2</defo>
+			</column>
+			<index name="pk_safra_produtos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_safra_produtos_produto_id" unique="NORMAL" >
+				<column name="cultura_id" />
+			</index>
+			<index name="idx_safra_produtos_safra_d" unique="NORMAL" >
+				<column name="safra_id" />
+			</index>
+			<fk name="fk_safra_produtos_safras" to_schema="public" to_table="safras" >
+				<fk_column name="safra_id" pk="id" />
+			</fk>
+			<fk name="fk_safra_culturas_culturas" to_schema="public" to_table="culturas" update_action="cascade" >
+				<fk_column name="cultura_id" pk="id" />
+			</fk>
+			<fk name="fk_safra_culturas_unidades_1" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_pesagem_id" pk="id" />
+			</fk>
+			<fk name="fk_safra_culturas_unidades_2" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_preco_id" pk="id" />
+			</fk>
+			<fk name="fk_safra_culturas_unidades_3" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_medida_area_id" pk="id" />
+			</fk>
+		</table>
+		<table name="safra_culturas_talhoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="talhao_id" type="integer" jt="4" mandatory="y" />
+			<column name="safra_cultura_id" type="integer" jt="4" mandatory="y" />
+			<column name="estimativa" type="float8" jt="6" mandatory="y" />
+			<column name="tamanho" type="float8" length="17" decimal="17" jt="6" />
+			<column name="finalizado" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_safra_produtos_talhoes_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_safra_produtos_talhoes_talhao_id" unique="NORMAL" >
+				<column name="talhao_id" />
+			</index>
+			<index name="idx_safra_produtos_talhoes_safra_produto_id" unique="NORMAL" >
+				<column name="safra_cultura_id" />
+			</index>
+			<index name="safra_cultura_talhao_uk" unique="UNIQUE" >
+				<column name="safra_cultura_id" />
+				<column name="talhao_id" />
+			</index>
+			<fk name="fk_safra_produtos_talhoes" to_schema="public" to_table="talhoes" >
+				<fk_column name="talhao_id" pk="id" />
+			</fk>
+			<fk name="fk_safra_produtos_talhoes_2" to_schema="public" to_table="safra_culturas" delete_action="cascade" update_action="cascade" >
+				<fk_column name="safra_cultura_id" pk="id" />
+			</fk>
+		</table>
+		<table name="safra_culturas_talhoes_cultivares" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="safra_cultura_talhao_id" type="integer" jt="4" mandatory="y" />
+			<column name="cultivar_id" type="integer" jt="4" mandatory="y" />
+			<column name="tamanho" type="float8" jt="6" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_safra_culturas_talhoes_cultivares_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="safra_cultura_talhao_cultivar_uk" unique="UNIQUE" >
+				<column name="safra_cultura_talhao_id" />
+				<column name="cultivar_id" />
+			</index>
+			<fk name="fk_safra_culturas_talhoes_cultivares_safra_culturas_talhoes" to_schema="public" to_table="safra_culturas_talhoes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="safra_cultura_talhao_id" pk="id" />
+			</fk>
+			<fk name="fk_safra_culturas_talhoes_cultivares_cultivares" to_schema="public" to_table="cultivares" delete_action="cascade" update_action="cascade" >
+				<fk_column name="cultivar_id" pk="id" />
+			</fk>
+		</table>
+		<table name="safras" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ano_inicio" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ano_fim" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="is_safrinha" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="is_favorite" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="29" decimal="6" jt="93" />
+			<index name="pk_safra_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_safra_produtor_id" unique="NORMAL" >
+				<column name="produtor_id" />
+			</index>
+			<fk name="fk_safra_produtor" to_schema="public" to_table="produtores" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="sub_grupos_produtos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="grupo_produto_id" type="integer" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_subgrupos_produtos_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_subgrupos_produtos_grupos_produtos" to_schema="public" to_table="grupos_produtos" delete_action="cascade" update_action="cascade" >
+				<fk_column name="grupo_produto_id" pk="id" />
+			</fk>
+		</table>
+		<table name="talhoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="area_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="tamanho" type="float8" length="17" decimal="17" jt="6" mandatory="y" />
+			<column name="unidade_area_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="image_id" type="integer" jt="4" />
+			<index name="talhao_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="talhao_area_id_foreign" to_schema="public" to_table="areas" >
+				<fk_column name="area_id" pk="id" />
+			</fk>
+			<fk name="fk_talhoes_images" to_schema="public" to_table="images" >
+				<fk_column name="image_id" pk="id" />
+			</fk>
+			<fk name="fk_talhoes_unidades" to_schema="public" to_table="unidades" >
+				<fk_column name="unidade_area_id" pk="id" />
+			</fk>
+		</table>
+		<table name="telefones" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="numero" type="varchar" length="14" decimal="0" jt="12" mandatory="y" />
+			<column name="contato_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="is_celular" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<index name="telefones_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="telefones_contato_id_foreign" to_schema="public" to_table="contatos" delete_action="cascade" >
+				<fk_column name="contato_id" pk="id" />
+			</fk>
+		</table>
+		<table name="tipos_negocios" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="is_fixacao" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<column name="is_quantidade" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<index name="pk_tipos_negocios_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_tipos_negocios_produtores" to_schema="public" to_table="produtores" delete_action="cascade" update_action="cascade" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="titulos" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="produtor_id" type="integer" jt="4" mandatory="y" />
+			<column name="pessoa_id" type="integer" jt="4" mandatory="y" />
+			<column name="is_pagar" type="bool" jt="-7" mandatory="y" />
+			<column name="valor" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="indexador_id" type="integer" jt="4" mandatory="y" />
+			<column name="vencimento" type="date" jt="91" mandatory="y" />
+			<column name="conta_bancaria_id" type="integer" jt="4" />
+			<column name="is_liquidado" type="bool" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="valor_saldo" type="numeric" length="14" decimal="2" jt="2" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_contratos_fixacoes_pagamentos_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_titulos_produtores" to_schema="public" to_table="produtores" update_action="cascade" >
+				<fk_column name="produtor_id" pk="id" />
+			</fk>
+			<fk name="fk_titulos_contas_bancarias" to_schema="public" to_table="contas_bancarias" delete_action="setNull" update_action="cascade" >
+				<fk_column name="conta_bancaria_id" pk="id" />
+			</fk>
+			<fk name="fk_titulos_pessoas" to_schema="public" to_table="pessoas" update_action="cascade" >
+				<fk_column name="pessoa_id" pk="id" />
+			</fk>
+			<fk name="fk_titulos_indexadores" to_schema="public" to_table="indexadores" update_action="cascade" >
+				<fk_column name="indexador_id" pk="id" />
+			</fk>
+		</table>
+		<table name="titulos_liquidacoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="titulo_id" type="integer" jt="4" mandatory="y" />
+			<column name="data_liquidacao" type="date" jt="91" mandatory="y" >
+				<defo>(&#039;now&#039;::text)::date</defo>
+			</column>
+			<column name="valor_principal" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="indexador_id" type="integer" jt="4" mandatory="y" />
+			<column name="taxa_cambio" type="numeric" length="8" decimal="2" jt="2" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[Se a moeda_id da liquidacao for igual a moeda_id do titulo, deve ser 1]]></comment>
+			</column>
+			<column name="valor_convertido" type="numeric" length="14" decimal="2" jt="2" mandatory="y" />
+			<column name="conta_bancaria_id" type="integer" jt="4" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" jt="93" />
+			<column name="valor_juros" type="numeric" length="14" decimal="2" jt="2" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="valor_multa" type="numeric" length="14" decimal="2" jt="2" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="valor_desconto" type="numeric" length="14" decimal="2" jt="2" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="valor_total" type="numeric" length="14" decimal="2" jt="2" />
+			<index name="pk_fixacoes_vencimentos_recebimentos_id_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_titulos_liquidacoes_titulos" to_schema="public" to_table="titulos" update_action="cascade" >
+				<fk_column name="titulo_id" pk="id" />
+			</fk>
+			<fk name="fk_titulos_liquidacoes_contas_bancarias" to_schema="public" to_table="contas_bancarias" delete_action="restrict" update_action="cascade" >
+				<fk_column name="conta_bancaria_id" pk="id" />
+			</fk>
+			<fk name="fk_titulos_liquidacoes_indexadores" to_schema="public" to_table="indexadores" update_action="cascade" >
+				<fk_column name="indexador_id" pk="id" />
+			</fk>
+		</table>
+		<table name="unidades" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="sigla" type="varchar" length="20" decimal="0" jt="12" />
+			<column name="nome" type="varchar" length="20" decimal="0" jt="12" mandatory="y" />
+			<column name="plural" type="varchar" length="30" decimal="0" jt="12" mandatory="y" />
+			<column name="descricao" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="is_area" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="is_medida" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="plural" type="varchar" length="30" decimal="0" jt="12" mandatory="y" />
+			<index name="unidades_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unidades_nome_uindex" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+		</table>
+		<table name="unidades_conversoes" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="origem_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="destino_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="multiplicador" type="float8" length="17" decimal="17" jt="6" mandatory="y" />
+			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<column name="deleted_at" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" mandatory="y" />
+			<index name="pk_unidades_conversao_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unique_origem_destino" unique="UNIQUE" >
+				<column name="origem_id" />
+				<column name="destino_id" />
+			</index>
+			<index name="idx_unidades_conversao_destino_id" unique="NORMAL" >
+				<column name="destino_id" />
+			</index>
+			<index name="idx_unidades_conversao_origem_id" unique="NORMAL" >
+				<column name="origem_id" />
+			</index>
+			<fk name="fk_unidades_conversao_unidades" to_schema="public" to_table="unidades" >
+				<fk_column name="origem_id" pk="id" />
+			</fk>
+			<fk name="fk_unidades_conversao_unidades_0" to_schema="public" to_table="unidades" >
+				<fk_column name="destino_id" pk="id" />
+			</fk>
+		</table>
+		<sequence name="account_roles_id_seq" />
+		<sequence name="accounts_id_seq" />
+		<sequence name="areas_id_seq" />
+		<sequence name="armazens_id_seq" />
+		<sequence name="bancos_id_seq" />
+		<sequence name="caminhoes_id_seq" />
+		<sequence name="caminhoes_reboques_id_seq" />
+		<sequence name="cfops_id_seq" />
+		<sequence name="cidades_id_seq" />
+		<sequence name="classificacoes_id_seq" />
+		<sequence name="contas_bancarias_id_seq" />
+		<sequence name="contatos_id_seq" />
+		<sequence name="cultivares_id_seq" />
+		<sequence name="culturas_classificacoes_id_seq" />
+		<sequence name="culturas_id_seq" />
+		<sequence name="emails_id_seq" />
+		<sequence name="entregas_classificacoes_id_seq" />
+		<sequence name="entregas_id_seq" />
+		<sequence name="entregas_pesagens_id_seq" />
+		<sequence name="entregas_talhoes_id_seq" />
+		<sequence name="estados_id_seq" />
+		<sequence name="grupos_economicos_id_seq" />
+		<sequence name="grupos_produtos_id_seq" />
+		<sequence name="images_id_seq" />
+		<sequence name="indexadores_id_seq" />
+		<sequence name="localizacoes_id_seq" />
+		<sequence name="marcas_id_seq" />
+		<sequence name="migrations_id_seq" />
+		<sequence name="moedas_id_seq" />
+		<sequence name="motoristas_id_seq" />
+		<sequence name="naturezas_operacoes_id_seq" />
+		<sequence name="negocios_culturas_armazens_id_seq" />
+		<sequence name="negocios_culturas_classificacoes_id_seq" />
+		<sequence name="negocios_culturas_id_seq" />
+		<sequence name="negocios_culturas_movimentos_id_seq" />
+		<sequence name="negocios_culturas_movimentos_tipos_id_seq" />
+		<sequence name="negocios_culturas_transferencias_id_seq" />
+		<sequence name="negocios_fixacoes_id_seq" />
+		<sequence name="negocios_fixacoes_titulos_id_seq" />
+		<sequence name="negocios_id_seq" />
+		<sequence name="negocios_produtos_id_seq" />
+		<sequence name="negocios_titulos_id_seq" />
+		<sequence name="notas_fiscais_autorizados_id_seq" />
+		<sequence name="notas_fiscais_cartas_correcoes_id_seq" />
+		<sequence name="notas_fiscais_duplicatas_id_seq" />
+		<sequence name="notas_fiscais_formas_pagamento_id_seq" />
+		<sequence name="notas_fiscais_id_seq" />
+		<sequence name="notas_fiscais_itens_cofins_id_seq" />
+		<sequence name="notas_fiscais_itens_icms_id_seq" />
+		<sequence name="notas_fiscais_itens_id_seq" />
+		<sequence name="notas_fiscais_itens_impostos_devolucoes_id_seq" />
+		<sequence name="notas_fiscais_itens_ipi_id_seq" />
+		<sequence name="notas_fiscais_itens_nves_id_seq" />
+		<sequence name="notas_fiscais_itens_pis_id_seq" />
+		<sequence name="notas_fiscais_localizacoes_id_seq" />
+		<sequence name="notas_fiscais_observacoes_id_seq" />
+		<sequence name="notas_fiscais_processos_id_seq" />
+		<sequence name="notas_fiscais_referenciadas_id_seq" />
+		<sequence name="notas_fiscais_series_id_seq" />
+		<sequence name="notas_fiscais_transportes_id_seq" />
+		<sequence name="notas_fiscais_transportes_reboques_id_seq" />
+		<sequence name="notas_fiscais_transportes_volumes_id_seq" />
+		<sequence name="notas_fiscais_transportes_volumes_lacres_id_seq" />
+		<sequence name="oauth_clients_id_seq" />
+		<sequence name="oauth_personal_access_clients_id_seq" />
+		<sequence name="paises_id_seq" />
+		<sequence name="permissions_id_seq" />
+		<sequence name="pessoas_id_seq" />
+		<sequence name="produtores_id_seq" />
+		<sequence name="produtos_barras_id_seq" />
+		<sequence name="produtos_embalagens_id_seq" />
+		<sequence name="produtos_id_seq" />
+		<sequence name="produtos_variacoes_id_seq" />
+		<sequence name="reboques_id_seq" />
+		<sequence name="revisions_id_seq" />
+		<sequence name="role_permissions_id_seq" />
+		<sequence name="roles_id_seq" />
+		<sequence name="safra_culturas_id_seq" />
+		<sequence name="safra_culturas_talhoes_cultivares_id_seq" />
+		<sequence name="safra_culturas_talhoes_id_seq" />
+		<sequence name="safras_id_seq" />
+		<sequence name="sub_grupos_produtos_id_seq" />
+		<sequence name="talhoes_id_seq" />
+		<sequence name="telefones_id_seq" />
+		<sequence name="tipos_negocios_id_seq" />
+		<sequence name="titulos_id_seq" />
+		<sequence name="titulos_liquidacoes_id_seq" />
+		<sequence name="unidades_conversoes_id_seq" />
+		<sequence name="unidades_id_seq" />
+	</schema>
+	<connector name="agroproject@netuno" database="PostgreSQL" host="netuno.mgpapelaria.com.br" port="5432" instance="agroproject" user="agroproject" passwd="QWdyb1Byb2plY3Q=" />
+	<connector name="homestead@localhost" database="PostgreSQL" host="localhost" port="5433" instance="homestead" user="homestead" passwd="c2VjcmV0" />
+	<layout name="Account" id="Layout_4582ea7" confirmed="y" show_relation="columns" >
+		<entity schema="homestead.public" name="accounts" color="C1D8EE" x="48" y="64" />
+		<entity schema="homestead.public" name="images" color="3986C1" x="272" y="48" />
+		<entity schema="homestead.public" name="produtores" color="C1D8EE" x="480" y="112" />
+		<entity schema="homestead.public" name="account_roles" color="C1D8EE" x="48" y="352" />
+		<entity schema="homestead.public" name="roles" color="C1D8EE" x="208" y="352" />
+		<entity schema="homestead.public" name="permissions" color="3986C1" x="576" y="352" />
+		<entity schema="homestead.public" name="role_permissions" color="C1D8EE" x="368" y="352" />
+		<script name="Sql_Editor" id="Editor_237d4ae" language="SQL" >
+			<string><![CDATA[-- VERIFICA SE NOME DAS SEQUENCES BATE COM PADRAO TABELA_ID_SEQ
+WITH qry AS (
+	SELECT 
+		col.table_name as tabela,
+		coalesce(col.column_default, '')::text as usando,
+		'nextval(''' || col.table_name || '_' || col.column_name || '_seq''::regclass)'::text as correto,
+		col.table_name || '_' || col.column_name || '_seq'
+	FROM information_schema.columns col
+	WHERE col.column_name = 'id'
+	and col.table_name not in ('oauth_access_tokens', 'oauth_auth_codes', 'oauth_refresh_tokens')
+)
+SELECT * 
+from qry
+WHERE qry.usando != qry.correto;
+
+-- ALTER SEQUENCE grupo_economico_id_seq RENAME TO classificacoes_id_seq;
+-- DROP SEQUENCE negocios_fixacoes_titulos_id_seq;
+-- CREATE SEQUENCE notas_fiscais_id_seq
+-- ALTER TABLE notas_fiscais alter column id set default nextval('notas_fiscais_id_seq'::regclass)
+
+-- VERIFICA SEQUENCES NAO UTILIZADAS NO PADRAO TABELA_ID_SEQ
+WITH padrao AS (
+	SELECT 
+		col.table_name || '_' || col.column_name::varchar || '_seq' as padrao
+	FROM information_schema.columns col
+	WHERE col.column_name = 'id'
+	and col.table_name not in ('oauth_access_tokens', 'oauth_auth_codes', 'oauth_refresh_tokens')
+), seqs AS (
+	SELECT c.relname::varchar as seq FROM pg_class c WHERE c.relkind = 'S'
+)
+SELECT * 
+from padrao
+full join seqs on (padrao.padrao = seqs.seq)
+where padrao.padrao is null
+or seqs.seq is null
+
+--drop sequence safra_produtos_talhoes_id_seq;]]></string>
+		</script>
+	</layout>
+	<layout name="Area" id="Layout_5d9ec1f" confirmed="y" show_relation="columns" >
+		<entity schema="homestead.public" name="areas" color="C1D8EE" x="48" y="48" />
+		<entity schema="homestead.public" name="localizacoes" color="C1D8EE" x="48" y="256" />
+		<entity schema="homestead.public" name="produtores" color="C1D8EE" x="208" y="256" />
+		<entity schema="homestead.public" name="safras" color="C1D8EE" x="384" y="256" />
+		<entity schema="homestead.public" name="safra_culturas" color="C1D8EE" x="576" y="256" />
+		<entity schema="homestead.public" name="safra_culturas_talhoes" color="C1D8EE" x="448" y="48" />
+		<entity schema="homestead.public" name="unidades" color="C1D8EE" x="304" y="528" />
+		<entity schema="homestead.public" name="talhoes" color="C1D8EE" x="240" y="48" />
+	</layout>
+	<layout name="Classificações" id="Layout_3dbd028" confirmed="y" show_relation="columns" >
+		<comment><![CDATA[classificacoes]]></comment>
+		<entity schema="homestead.public" name="culturas" color="3986C1" x="48" y="48" />
+		<entity schema="homestead.public" name="classificacoes" color="3986C1" x="352" y="352" />
+		<entity schema="homestead.public" name="entregas_classificacoes" color="3986C1" x="336" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas_classificacoes" color="3986C1" x="48" y="544" />
+		<entity schema="homestead.public" name="negocios_culturas" color="3986C1" x="480" y="464" />
+		<entity schema="homestead.public" name="culturas_classificacoes" color="3986C1" x="48" y="336" />
+	</layout>
+	<layout name="Default" id="Layout_39a2a3c" confirmed="y" show_relation="columns" >
+		<entity schema="homestead.public" name="contatos" color="C8F5BF" x="1184" y="256" />
+		<entity schema="homestead.public" name="emails" color="C8F5BF" x="1184" y="480" />
+		<entity schema="homestead.public" name="estados" color="BFD4F5" x="864" y="64" />
+		<entity schema="homestead.public" name="migrations" color="BFBFF5" x="48" y="768" />
+		<entity schema="homestead.public" name="oauth_access_tokens" color="BFBFF5" x="192" y="768" />
+		<entity schema="homestead.public" name="oauth_personal_access_clients" color="BFBFF5" x="608" y="1024" />
+		<entity schema="homestead.public" name="oauth_refresh_tokens" color="BFBFF5" x="384" y="1024" />
+		<entity schema="homestead.public" name="paises" color="BFD4F5" x="1120" y="64" />
+		<entity schema="homestead.public" name="permissions" color="F5DDBF" x="1536" y="768" />
+		<entity schema="homestead.public" name="role_permissions" color="F5DDBF" x="1344" y="768" />
+		<entity schema="homestead.public" name="roles" color="F5DDBF" x="1184" y="768" />
+		<entity schema="homestead.public" name="oauth_clients" color="BFBFF5" x="384" y="768" />
+		<entity schema="homestead.public" name="cidades" color="BFD4F5" x="720" y="64" />
+		<entity schema="homestead.public" name="telefones" color="C8F5BF" x="1024" y="480" />
+		<entity schema="homestead.public" name="produtores" color="C1D8EE" x="832" y="544" />
+		<entity schema="homestead.public" name="oauth_auth_codes" color="BFBFF5" x="592" y="848" />
+		<entity schema="homestead.public" name="safras" color="C1D8EE" x="704" y="336" />
+		<entity schema="homestead.public" name="unidades" color="BFD4F5" x="128" y="48" />
+		<entity schema="homestead.public" name="areas" color="BFD4F5" x="128" y="320" />
+		<entity schema="homestead.public" name="grupos_economicos" color="C8F5BF" x="1568" y="256" />
+		<entity schema="homestead.public" name="revisions" color="C1D8EE" x="1328" y="544" />
+		<entity schema="homestead.public" name="safra_culturas_talhoes" color="C1D8EE" x="320" y="544" />
+		<entity schema="homestead.public" name="pessoas" color="C8F5BF" x="1344" y="256" />
+		<entity schema="homestead.public" name="images" color="3986C1" x="1296" y="48" />
+		<entity schema="homestead.public" name="produtos" color="C1D8EE" x="768" y="720" />
+		<entity schema="homestead.public" name="localizacoes" color="BFD4F5" x="544" y="64" />
+		<entity schema="homestead.public" name="safra_culturas" color="C1D8EE" x="576" y="544" />
+		<entity schema="homestead.public" name="unidades_conversoes" color="3986C1" x="1392" y="1008" />
+		<entity schema="homestead.public" name="account_roles" color="F5DDBF" x="1024" y="768" />
+		<entity schema="homestead.public" name="talhoes" color="BFD4F5" x="128" y="528" />
+		<entity schema="homestead.public" name="accounts" color="F5DDBF" x="1024" y="944" />
+	</layout>
+	<layout name="Entregas" id="Layout_3fa9534" confirmed="y" show_relation="columns" >
+		<comment><![CDATA[Entregas]]></comment>
+		<entity schema="homestead.public" name="armazens" color="3986C1" x="64" y="320" />
+		<entity schema="homestead.public" name="localizacoes" color="3986C1" x="64" y="544" />
+		<entity schema="homestead.public" name="pessoas" color="3986C1" x="240" y="544" />
+		<entity schema="homestead.public" name="images" color="3986C1" x="1296" y="48" />
+		<entity schema="homestead.public" name="produtores" color="3986C1" x="1088" y="64" />
+		<entity schema="homestead.public" name="negocios_culturas_armazens" color="999900" x="288" y="336" />
+		<entity schema="homestead.public" name="safra_culturas_talhoes" color="3986C1" x="48" y="80" />
+		<entity schema="homestead.public" name="negocios_culturas" color="999900" x="512" y="352" />
+		<entity schema="homestead.public" name="motoristas" color="C1D8EE" x="736" y="64" />
+		<entity schema="homestead.public" name="negocios" color="3986C1" x="1360" y="688" />
+		<entity schema="homestead.public" name="notas_fiscais_series" color="C1D8EE" x="480" y="624" />
+		<entity schema="homestead.public" name="notas_fiscais" color="990000" x="704" y="624" />
+		<entity schema="homestead.public" name="cfops" color="C1D8EE" x="1168" y="608" />
+		<entity schema="homestead.public" name="entregas" color="990000" x="512" y="96" />
+		<entity schema="homestead.public" name="entregas_talhoes" color="990000" x="256" y="80" />
+		<entity schema="homestead.public" name="caminhoes" color="C1D8EE" x="880" y="48" />
+		<entity schema="homestead.public" name="notas_fiscais_itens" color="990000" x="944" y="592" />
+		<entity schema="homestead.public" name="entregas_classificacoes" color="990000" x="1248" y="400" />
+		<entity schema="homestead.public" name="entregas_pesagens" color="990000" x="880" y="352" />
+	</layout>
+	<layout name="Negócio Cultura Movimento" id="Layout_3aef18a" confirmed="y" show_relation="columns" >
+		<comment><![CDATA[PostgreSQL]]></comment>
+		<entity schema="homestead.public" name="notas_fiscais_itens" color="00FF00" x="1072" y="80" />
+		<entity schema="homestead.public" name="armazens" color="3986C1" x="640" y="48" />
+		<entity schema="homestead.public" name="entregas" color="3986C1" x="848" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas" color="3986C1" x="48" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas_movimentos_tipos" color="C1D8EE" x="720" y="560" />
+		<entity schema="homestead.public" name="negocios_culturas_armazens" color="3986C1" x="304" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas_transferencias" color="C1D8EE" x="256" y="432" />
+		<entity schema="homestead.public" name="negocios" color="3986C1" x="48" y="384" />
+		<entity schema="homestead.public" name="negocios_culturas_movimentos" color="3986C1" x="544" y="256" />
+	</layout>
+	<layout name="Negócio Simplificado" id="Layout_5366883" confirmed="y" show_relation="columns" >
+		<comment><![CDATA[negocio_simplifyed]]></comment>
+		<entity schema="homestead.public" name="negocios_fixacoes" color="3986C1" x="48" y="624" />
+		<entity schema="homestead.public" name="negocios_culturas_classificacoes" color="3986C1" x="48" y="448" />
+		<entity schema="homestead.public" name="safra_culturas" color="3986C1" x="544" y="48" />
+		<entity schema="homestead.public" name="safras" color="3986C1" x="768" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas_armazens" color="3986C1" x="704" y="256" />
+		<entity schema="homestead.public" name="tipos_negocios" color="3986C1" x="752" y="400" />
+		<entity schema="homestead.public" name="negocios_produtos" color="3986C1" x="752" y="592" />
+		<entity schema="homestead.public" name="negocios" color="3986C1" x="496" y="288" />
+		<entity schema="homestead.public" name="negocios_culturas" color="3986C1" x="304" y="288" />
+		<entity schema="homestead.public" name="titulos" color="3986C1" x="384" y="544" />
+		<entity schema="homestead.public" name="negocios_fixacoes_titulos" color="3986C1" x="320" y="864" />
+		<entity schema="homestead.public" name="negocios_titulos" color="3986C1" x="480" y="864" />
+		<entity schema="homestead.public" name="negocios_culturas_transferencias" color="3986C1" x="320" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas_movimentos" color="3986C1" x="48" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas_movimentos_tipos" color="3986C1" x="48" y="288" />
+	</layout>
+	<layout name="Negócios" id="Layout_599d83e" confirmed="y" show_relation="columns" >
+		<comment><![CDATA[Negócios]]></comment>
+		<entity schema="homestead.public" name="bancos" color="3986C1" x="1600" y="112" />
+		<entity schema="homestead.public" name="armazens" color="3986C1" x="1024" y="128" />
+		<entity schema="homestead.public" name="classificacoes" color="990000" x="512" y="160" />
+		<entity schema="homestead.public" name="localizacoes" color="3986C1" x="1200" y="96" />
+		<entity schema="homestead.public" name="moedas" color="FFFF4D" x="144" y="992" />
+		<entity schema="homestead.public" name="cultivares" color="990000" x="128" y="176" />
+		<entity schema="homestead.public" name="produtores" color="3986C1" x="576" y="992" />
+		<entity schema="homestead.public" name="negocios_produtos" color="80801A" x="768" y="528" />
+		<entity schema="homestead.public" name="grupos_produtos" color="4D1A4D" x="768" y="784" />
+		<entity schema="homestead.public" name="sub_grupos_produtos" color="4D1A4D" x="768" y="944" />
+		<entity schema="homestead.public" name="negocios" color="80801A" x="928" y="656" />
+		<entity schema="homestead.public" name="contas_bancarias" color="3986C1" x="1600" y="320" />
+		<entity schema="homestead.public" name="pessoas" color="3986C1" x="1376" y="128" />
+		<entity schema="homestead.public" name="safra_culturas" color="003333" x="496" y="400" />
+		<entity schema="homestead.public" name="safras" color="003333" x="352" y="752" />
+		<entity schema="homestead.public" name="culturas_classificacoes" color="990000" x="336" y="176" />
+		<entity schema="homestead.public" name="indexadores" color="FFFF4D" x="128" y="752" />
+		<entity schema="homestead.public" name="grupos_economicos" color="3986C1" x="1424" y="480" />
+		<entity schema="homestead.public" name="negocios_titulos" color="80801A" x="1136" y="848" />
+		<entity schema="homestead.public" name="produtos" color="4D1A4D" x="544" y="672" />
+		<entity schema="homestead.public" name="titulos_liquidacoes" color="1A4D1A" x="1632" y="976" />
+		<entity schema="homestead.public" name="titulos" color="336633" x="1360" y="944" />
+		<entity schema="homestead.public" name="negocios_fixacoes_titulos" color="C1D8EE" x="1216" y="736" />
+		<entity schema="homestead.public" name="negocios_fixacoes" color="80801A" x="1136" y="368" />
+		<entity schema="homestead.public" name="unidades" color="3986C1" x="336" y="496" />
+		<entity schema="homestead.public" name="negocios_culturas" color="80801A" x="944" y="336" />
+		<entity schema="homestead.public" name="culturas" color="990000" x="48" y="480" />
+		<entity schema="homestead.public" name="negocios_culturas_classificacoes" color="80801A" x="640" y="224" />
+		<entity schema="homestead.public" name="negocios_culturas_armazens" color="80801A" x="800" y="48" />
+		<entity schema="homestead.public" name="tipos_negocios" color="80801A" x="960" y="912" />
+	</layout>
+	<layout name="Notas Fiscais" id="Layout_12bbaf3" show_relation="columns" >
+		<comment><![CDATA[PostgreSQL]]></comment>
+		<entity schema="homestead.public" name="pessoas" color="3986C1" x="1152" y="144" />
+		<entity schema="homestead.public" name="contatos" color="3986C1" x="832" y="336" />
+		<entity schema="homestead.public" name="emails" color="3986C1" x="976" y="352" />
+		<entity schema="homestead.public" name="grupos_economicos" color="3986C1" x="880" y="112" />
+		<entity schema="homestead.public" name="telefones" color="3986C1" x="720" y="96" />
+		<entity schema="homestead.public" name="produtos_embalagens" color="C1D8EE" x="336" y="1328" />
+		<entity schema="homestead.public" name="produtos_variacoes" color="C1D8EE" x="576" y="1424" />
+		<entity schema="homestead.public" name="produtos_barras" color="C1D8EE" x="784" y="1328" />
+		<entity schema="homestead.public" name="culturas" color="3986C1" x="2096" y="1280" />
+		<entity schema="homestead.public" name="safra_culturas" color="3986C1" x="1840" y="1296" />
+		<entity schema="homestead.public" name="negocios_culturas" color="3986C1" x="1584" y="1296" />
+		<entity schema="homestead.public" name="grupos_produtos" color="3986C1" x="656" y="1584" />
+		<entity schema="homestead.public" name="sub_grupos_produtos" color="3986C1" x="336" y="1616" />
+		<entity schema="homestead.public" name="produtos" color="3986C1" x="48" y="1296" />
+		<entity schema="homestead.public" name="notas_fiscais_series" color="3986C1" x="1424" y="192" />
+		<entity schema="homestead.public" name="localizacoes" color="3986C1" x="1632" y="48" />
+		<entity schema="homestead.public" name="reboques" color="C1D8EE" x="2464" y="112" />
+		<entity schema="homestead.public" name="caminhoes_reboques" color="C1D8EE" x="2272" y="112" />
+		<entity schema="homestead.public" name="caminhoes" color="3986C1" x="2048" y="80" />
+		<entity schema="homestead.public" name="estados" color="3986C1" x="1888" y="336" />
+		<entity schema="homestead.public" name="cidades" color="3986C1" x="1696" y="320" />
+		<entity schema="homestead.public" name="paises" color="3986C1" x="1840" y="96" />
+		<entity schema="homestead.public" name="naturezas_operacoes" color="3986C1" x="1760" y="1056" />
+		<entity schema="homestead.public" name="negocios_culturas_movimentos" color="3986C1" x="1200" y="1472" />
+		<entity schema="homestead.public" name="notas_fiscais_transportes_volumes" color="00FF00" x="2304" y="576" />
+		<entity schema="homestead.public" name="notas_fiscais_itens_impostos_devolucoes" color="00FF00" x="432" y="1104" />
+		<entity schema="homestead.public" name="notas_fiscais_referenciadas" color="00FF00" x="1792" y="656" />
+		<entity schema="homestead.public" name="notas_fiscais" color="00FF00" x="1280" y="480" />
+		<entity schema="homestead.public" name="notas_fiscais_localizacoes" color="00FF00" x="1536" y="512" />
+		<entity schema="homestead.public" name="notas_fiscais_transportes" color="00FF00" x="2048" y="448" />
+		<entity schema="homestead.public" name="notas_fiscais_transportes_reboques" color="00FF00" x="2288" y="336" />
+		<entity schema="homestead.public" name="notas_fiscais_transportes_volumes_lacres" color="00FF00" x="2288" y="864" />
+		<entity schema="homestead.public" name="notas_fiscais_cartas_correcoes" color="00FF00" x="2016" y="1040" />
+		<entity schema="homestead.public" name="notas_fiscais_formas_pagamento" color="00FF00" x="2304" y="1024" />
+		<entity schema="homestead.public" name="notas_fiscais_duplicatas" color="00FF00" x="2384" y="1248" />
+		<entity schema="homestead.public" name="notas_fiscais_itens_nves" color="00FF00" x="880" y="1536" />
+		<entity schema="homestead.public" name="cfops" color="3986C1" x="1072" y="1184" />
+		<entity schema="homestead.public" name="notas_fiscais_processos" color="00FF00" x="1040" y="992" />
+		<entity schema="homestead.public" name="notas_fiscais_observacoes" color="00FF00" x="1040" y="768" />
+		<entity schema="homestead.public" name="notas_fiscais_autorizados" color="00FF00" x="1072" y="528" />
+		<entity schema="homestead.public" name="notas_fiscais_itens_ipi" color="008000" x="464" y="784" />
+		<entity schema="homestead.public" name="notas_fiscais_itens_pis" color="008000" x="480" y="448" />
+		<entity schema="homestead.public" name="notas_fiscais_itens_cofins" color="008000" x="480" y="128" />
+		<entity schema="homestead.public" name="notas_fiscais_itens_icms" color="00FF00" x="64" y="192" />
+		<entity schema="homestead.public" name="notas_fiscais_itens" color="00FF00" x="768" y="544" />
+		<script name="SQL_Editor" id="Editor_4007ea2" language="SQL" >
+			<string><![CDATA[ALTER TABLE "public".notas_fiscais ALTER COLUMN chave TYPE numeric(44) using chave::numeric(44)]]></string>
+		</script>
+		<script name="notas_fiscais_localizacoes" id="Editor_1dc0ed8" language="SQL" >
+			<string><![CDATA[CREATE TABLE "public".notas_fiscais_localizacoes ( 
+	id                   serial  NOT NULL,
+	nota_fiscal_id       integer   ,
+	tipo                 notas_fiscais_enderecos_tipo   ,
+	localizacao_id       integer   ,
+	razao_social         varchar(100)   ,
+	cnpj                 varchar(18)   ,
+	cpf                  varchar(14)   ,
+	inscricao_estrangeiro varchar(25)   ,
+	inscricao_estadual_indicador smallint   ,
+	inscricao_estadual   varchar(15)   ,
+	inscricao_suframa    numeric(9,0)   ,
+	inscricao_municipal  varchar(15)   ,
+	email                varchar(50)   ,
+	CONSTRAINT pk_notas_fiscais_enderecos_id PRIMARY KEY ( id )
+ );
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.localizacao_id IS 'enderEmit';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.razao_social IS 'dest.xNome';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.cnpj IS 'dest.CNPJ';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.cpf IS 'dest.CPF';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.inscricao_estrangeiro IS 'dest.idEstrangeiro';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.inscricao_estadual_indicador IS 'dest.indIEDest';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.inscricao_estadual IS 'dest.IE';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.inscricao_suframa IS 'dest.ISUF';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.inscricao_municipal IS 'dest.IM';
+
+COMMENT ON COLUMN "public".notas_fiscais_localizacoes.email IS 'dest.email';
+
+ALTER TABLE "public".notas_fiscais_localizacoes ADD CONSTRAINT fk_notas_fiscais_enderecos_localizacoes FOREIGN KEY ( localizacao_id ) REFERENCES "public".localizacoes( id )  ON UPDATE CASCADE;
+
+ALTER TABLE "public".notas_fiscais_localizacoes ADD CONSTRAINT fk_notas_fiscais_enderecos_notas_fiscais FOREIGN KEY ( nota_fiscal_id ) REFERENCES "public".notas_fiscais( id )  ON UPDATE CASCADE;
+]]></string>
+		</script>
+	</layout>
+	<layout name="Oauth" id="Layout_39d4eef" confirmed="y" show_column_type="y" show_relation="columns" >
+		<entity schema="homestead.public" name="accounts" color="F5DDBF" x="1344" y="768" />
+		<entity schema="homestead.public" name="account_roles" color="F5DDBF" x="1344" y="592" />
+		<entity schema="homestead.public" name="cidades" color="BFD4F5" x="736" y="80" />
+		<entity schema="homestead.public" name="emails" color="C8F5BF" x="1568" y="304" />
+		<entity schema="homestead.public" name="estados" color="BFD4F5" x="928" y="80" />
+		<entity schema="homestead.public" name="migrations" color="BFBFF5" x="48" y="592" />
+		<entity schema="homestead.public" name="oauth_access_tokens" color="BFBFF5" x="272" y="592" />
+		<entity schema="homestead.public" name="oauth_auth_codes" color="BFBFF5" x="752" y="592" />
+		<entity schema="homestead.public" name="oauth_clients" color="BFBFF5" x="496" y="592" />
+		<entity schema="homestead.public" name="oauth_personal_access_clients" color="BFBFF5" x="752" y="832" />
+		<entity schema="homestead.public" name="oauth_refresh_tokens" color="BFBFF5" x="480" y="832" />
+		<entity schema="homestead.public" name="paises" color="BFD4F5" x="1120" y="80" />
+		<entity schema="homestead.public" name="permissions" color="F5DDBF" x="2048" y="592" />
+		<entity schema="homestead.public" name="role_permissions" color="F5DDBF" x="1808" y="592" />
+		<entity schema="homestead.public" name="roles" color="F5DDBF" x="1568" y="592" />
+		<entity schema="homestead.public" name="telefones" color="C8F5BF" x="1344" y="304" />
+		<entity schema="homestead.public" name="unidades" color="BFD4F5" x="48" y="304" />
+		<entity schema="homestead.public" name="pessoas" color="C8F5BF" x="1792" y="80" />
+		<entity schema="homestead.public" name="grupos_economicos" color="C8F5BF" x="2080" y="80" />
+		<entity schema="homestead.public" name="contatos" color="C8F5BF" x="1568" y="80" />
+		<entity schema="homestead.public" name="localizacoes" color="BFD4F5" x="496" y="80" />
+		<entity schema="homestead.public" name="areas" color="BFD4F5" x="272" y="80" />
+		<entity schema="homestead.public" name="talhoes" color="BFD4F5" x="272" y="304" />
+		<group name="areas" color="ECF0F7" >
+			<entity schema="homestead.public" name="areas" />
+			<entity schema="homestead.public" name="localizacoes" />
+			<entity schema="homestead.public" name="cidades" />
+			<entity schema="homestead.public" name="estados" />
+			<entity schema="homestead.public" name="talhoes" />
+			<entity schema="homestead.public" name="unidades" />
+			<entity schema="homestead.public" name="paises" />
+		</group>
+		<group name="contatos" color="EEF7EC" >
+			<entity schema="homestead.public" name="contatos" />
+			<entity schema="homestead.public" name="pessoas" />
+			<entity schema="homestead.public" name="emails" />
+			<entity schema="homestead.public" name="grupos_economicos" />
+			<entity schema="homestead.public" name="telefones" />
+		</group>
+		<group name="account_roles" color="F7F3EC" >
+			<entity schema="homestead.public" name="account_roles" />
+			<entity schema="homestead.public" name="roles" />
+			<entity schema="homestead.public" name="role_permissions" />
+			<entity schema="homestead.public" name="accounts" />
+			<entity schema="homestead.public" name="permissions" />
+		</group>
+		<group name="migrations" color="ECECF7" >
+			<entity schema="homestead.public" name="migrations" />
+			<entity schema="homestead.public" name="oauth_access_tokens" />
+			<entity schema="homestead.public" name="oauth_clients" />
+			<entity schema="homestead.public" name="oauth_auth_codes" />
+			<entity schema="homestead.public" name="oauth_personal_access_clients" />
+			<entity schema="homestead.public" name="oauth_refresh_tokens" />
+		</group>
+	</layout>
+	<layout name="Pessoa" id="Layout_1f7aaf5" show_relation="columns" >
+		<entity schema="homestead.public" name="produtores" color="3986C1" x="656" y="48" />
+		<entity schema="homestead.public" name="grupos_economicos" color="3986C1" x="416" y="48" />
+		<entity schema="homestead.public" name="localizacoes" color="3986C1" x="432" y="224" />
+		<entity schema="homestead.public" name="cidades" color="3986C1" x="656" y="224" />
+		<entity schema="homestead.public" name="estados" color="3986C1" x="656" y="464" />
+		<entity schema="homestead.public" name="paises" color="3986C1" x="656" y="704" />
+		<entity schema="homestead.public" name="telefones" color="3986C1" x="256" y="416" />
+		<entity schema="homestead.public" name="emails" color="3986C1" x="256" y="608" />
+		<entity schema="homestead.public" name="contatos" color="3986C1" x="48" y="496" />
+		<entity schema="homestead.public" name="pessoas" color="3986C1" x="48" y="48" />
+	</layout>
+	<layout name="Safra" id="Layout_3f482df" confirmed="y" show_relation="columns" >
+		<comment><![CDATA[Safra]]></comment>
+		<entity schema="homestead.public" name="culturas" color="990000" x="176" y="304" />
+		<entity schema="homestead.public" name="cultivares" color="990000" x="768" y="304" />
+		<entity schema="homestead.public" name="marcas" color="990000" x="944" y="304" />
+		<entity schema="homestead.public" name="talhoes" color="E6E64D" x="464" y="304" />
+		<entity schema="homestead.public" name="areas" color="E6E64D" x="624" y="304" />
+		<entity schema="homestead.public" name="safra_culturas" color="4D804D" x="224" y="48" />
+		<entity schema="homestead.public" name="safras" color="4D804D" x="48" y="48" />
+		<entity schema="homestead.public" name="safra_culturas_talhoes_cultivares" color="4D804D" x="736" y="48" />
+		<entity schema="homestead.public" name="safra_culturas_talhoes" color="4D804D" x="496" y="48" />
+		<script name="safra_culturas_talhoes" id="Editor_5d25f87" language="SQL" >
+			<string><![CDATA[CREATE TABLE "public".safra_culturas_talhoes ( 
+	id                   serial  NOT NULL ,
+	talhao_id            integer  NOT NULL ,
+	safra_cultura_id     integer  NOT NULL ,
+	estimativa           float8  NOT NULL ,
+	tamanho              float8 DEFAULT 0 NOT NULL ,
+	finalizado           bool DEFAULT false NOT NULL ,
+	created_at           timestamp   ,
+	updated_at           timestamp   ,
+	deleted_at           timestamp   ,
+	CONSTRAINT pk_safra_produtos_talhoes_id PRIMARY KEY ( id ),
+	CONSTRAINT safra_cultura_talhao_uk UNIQUE ( safra_cultura_id, talhao_id ) 
+ );
+
+CREATE INDEX idx_safra_produtos_talhoes_talhao_id ON "public".safra_culturas_talhoes ( talhao_id );
+
+CREATE INDEX idx_safra_produtos_talhoes_safra_produto_id ON "public".safra_culturas_talhoes ( safra_cultura_id );
+
+ALTER TABLE "public".safra_culturas_talhoes ADD CONSTRAINT fk_safra_produtos_talhoes FOREIGN KEY ( talhao_id ) REFERENCES "public".talhoes( id );
+
+ALTER TABLE "public".safra_culturas_talhoes ADD CONSTRAINT fk_safra_produtos_talhoes_2 FOREIGN KEY ( safra_cultura_id ) REFERENCES "public".safra_culturas( id ) ON DELETE CASCADE ON UPDATE CASCADE;]]></string>
+		</script>
+		<script name="safra_culturas_talhoes_cultivares" id="Editor_1e1ab98" language="SQL" >
+			<string><![CDATA[CREATE TABLE "public".safra_culturas_talhoes_cultivares ( 
+	id                   serial  NOT NULL ,
+	safra_cultura_talhao_id integer  NOT NULL ,
+	cultivar_id          integer  NOT NULL ,
+	tamanho              float8   ,
+	created_at           timestamp   ,
+	updated_at           timestamp   ,
+	deleted_at           timestamp   ,
+	CONSTRAINT pk_safra_culturas_talhoes_cultivares_id PRIMARY KEY ( id ),
+	CONSTRAINT safra_cultura_talhao_cultivar_uk UNIQUE ( safra_cultura_talhao_id, cultivar_id ) 
+ );
+
+ALTER TABLE "public".safra_culturas_talhoes_cultivares ADD CONSTRAINT fk_safra_culturas_talhoes_cultivares_safra_culturas_talhoes FOREIGN KEY ( safra_cultura_talhao_id ) REFERENCES "public".safra_culturas_talhoes( id ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE "public".safra_culturas_talhoes_cultivares ADD CONSTRAINT fk_safra_culturas_talhoes_cultivares_cultivares FOREIGN KEY ( cultivar_id ) REFERENCES "public".cultivares( id ) ON DELETE CASCADE ON UPDATE CASCADE;]]></string>
+		</script>
+	</layout>
+	<layout name="Tabelas com unidade_medida" id="Layout_577bc1b" show_relation="columns" >
+		<entity schema="homestead.public" name="entregas" color="3986C1" x="48" y="64" />
+		<entity schema="homestead.public" name="entregas_pesagens" color="3986C1" x="256" y="64" />
+		<entity schema="homestead.public" name="caminhoes" color="3986C1" x="48" y="384" />
+		<entity schema="homestead.public" name="notas_fiscais_itens" color="3986C1" x="1168" y="48" />
+		<entity schema="homestead.public" name="negocios_culturas" color="3986C1" x="848" y="64" />
+		<entity schema="homestead.public" name="safra_culturas" color="3986C1" x="544" y="48" />
+		<entity schema="homestead.public" name="culturas" color="3986C1" x="528" y="304" />
+		<entity schema="homestead.public" name="negocios_fixacoes" color="3986C1" x="832" y="496" />
+		<entity schema="homestead.public" name="indexadores" color="3986C1" x="544" y="624" />
+		<entity schema="homestead.public" name="produtos_embalagens" color="3986C1" x="288" y="560" />
+	</layout>
+	<layout name="Tabelas com unidade_medida_001" id="Layout_3fae926" show_relation="columns" >
+		<entity schema="homestead.public" name="indexadores" color="3986C1" x="560" y="160" />
+		<entity schema="homestead.public" name="produtos" color="3986C1" x="48" y="48" />
+		<entity schema="homestead.public" name="produtos_variacoes" color="3986C1" x="96" y="464" />
+		<entity schema="homestead.public" name="entregas_talhoes" color="3986C1" x="768" y="1184" />
+		<entity schema="homestead.public" name="negocios_culturas_movimentos" color="3986C1" x="1792" y="896" />
+		<entity schema="homestead.public" name="negocios_culturas_armazens" color="3986C1" x="1520" y="880" />
+		<entity schema="homestead.public" name="negocios_culturas" color="3986C1" x="1248" y="880" />
+		<entity schema="homestead.public" name="produtos_embalagens" color="3986C1" x="320" y="48" />
+		<entity schema="homestead.public" name="negocios_produtos" color="3986C1" x="960" y="352" />
+		<entity schema="homestead.public" name="produtos_barras" color="3986C1" x="304" y="432" />
+		<entity schema="homestead.public" name="negocios_culturas_transferencias" color="3986C1" x="1472" y="1136" />
+		<entity schema="homestead.public" name="negocios" color="3986C1" x="1488" y="464" />
+		<entity schema="homestead.public" name="negocios_fixacoes" color="3986C1" x="1200" y="512" />
+		<entity schema="homestead.public" name="safra_culturas_talhoes" color="3986C1" x="1040" y="1168" />
+		<entity schema="homestead.public" name="caminhoes" color="3986C1" x="256" y="704" />
+		<entity schema="homestead.public" name="entregas_pesagens" color="3986C1" x="272" y="1024" />
+		<entity schema="homestead.public" name="entregas_classificacoes" color="3986C1" x="288" y="1328" />
+		<entity schema="homestead.public" name="safra_culturas" color="3986C1" x="896" y="848" />
+		<entity schema="homestead.public" name="culturas" color="3986C1" x="896" y="592" />
+		<entity schema="homestead.public" name="unidades" color="3986C1" x="592" y="640" />
+		<entity schema="homestead.public" name="entregas" color="3986C1" x="512" y="1184" />
+	</layout>
+</project>

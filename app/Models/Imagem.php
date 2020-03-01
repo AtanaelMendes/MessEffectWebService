@@ -52,7 +52,7 @@ class Imagem extends BaseModel
 
     public function usuario()
     {
-        return $this->hasMany('App\Models\Usuario', 'imagem_id', 'id');
+        return $this->hasMany('App\Models\User', 'imagem_id', 'id');
     }
 
 }

@@ -2,14 +2,19 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\BaseModel;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable
+class User extends BaseModel implements AuthenticatableContract, AuthorizableContract
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Authenticatable, Authorizable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,24 +22,34 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'imagem_id',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'pivot',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function image()
+    {
+        return $this->belongsTo('App\Models\Imagem');
+    }
+
+    public function roles(){
+        return $this->belongsToMany(
+            'App\Models\Acao', 'usuario_acao', 'usuario_id', 'acao_id'
+        )->withTimestamps();
+    }
+
+    public function hasPermission($permissionCode){
+        foreach ($this->roles()->get() as $role){
+            foreach ($role->permissions()->get() as $permission){
+                if($permission->code == $permissionCode){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

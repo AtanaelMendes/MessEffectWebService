@@ -3,11 +3,11 @@
 
 namespace App\Http\Requests;
 
-
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
-class AccountRequest extends FormRequest
+class AccountChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,17 +28,17 @@ class AccountRequest extends FormRequest
     {
         switch($this->method()){
             case 'POST':
-                return [
-                    'name' => 'required|min:3|max:30',
-                    'email' => 'required|email|unique:users',
-                    'password' => 'required|min:6'
-                ];
+
             case 'PUT':
-                $id = array_get($this->route()[2], 'id', null);
+                $account = Auth::user();
+
                 return [
-                    'name' => 'nullable|min:3|max:30',
-                    'email' => ['email', Rule::unique('users')->ignore($id)],
-                    'password' => 'nullable|min:6'
+                    'new_password' => 'required|min:8',
+                    'password' => ['required', 'min:8', function($attribute, $value, $fail) use ($account){
+                        if(!Hash::check($value, $account->getAuthPassword())){
+                            $fail('Senha incorreta!');
+                        }
+                    }]
                 ];
             default:
                 return null;

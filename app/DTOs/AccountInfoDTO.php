@@ -17,7 +17,7 @@ class AccountInfoDTO extends BaseDTO
 
     /**
      * AccountInfoDTO constructor.
-     * @param Account $account
+     * @param User $account
      */
     public function __construct(User $account)
     {

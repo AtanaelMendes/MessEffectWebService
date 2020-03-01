@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="hermessys" id="Project_142a559" template="Default" database="PostgreSQL" >
+	<schema name="information_schema" catalogname="messeffect" >
+		<udt name="cardinal_number" udt_java_type="12" udt_precision="NONE" >
+			<udt_script><![CDATA[CREATE DOMAIN information_schema.cardinal_number integer CONSTRAINT cardinal_number_domain_check CHECK (VALUE >= 0)]]></udt_script>
+		</udt>
+		<udt name="character_data" udt_java_type="12" udt_precision="NONE" >
+			<udt_script><![CDATA[CREATE DOMAIN information_schema.character_data character varying ]]></udt_script>
+		</udt>
+		<udt name="sql_identifier" udt_java_type="12" udt_precision="NONE" >
+			<udt_script><![CDATA[CREATE DOMAIN information_schema.sql_identifier character varying ]]></udt_script>
+		</udt>
+		<udt name="time_stamp" udt_java_type="12" udt_precision="NONE" >
+			<udt_script><![CDATA[CREATE DOMAIN information_schema.time_stamp timestamp(2) with time zone DEFAULT CURRENT_TIMESTAMP(2) ]]></udt_script>
+		</udt>
+		<udt name="yes_or_no" udt_java_type="12" udt_precision="NONE" >
+			<udt_script><![CDATA[CREATE DOMAIN information_schema.yes_or_no character varying(3) CONSTRAINT yes_or_no_check CHECK (VALUE::text = ANY (ARRAY['YES'::character varying, 'NO'::character varying]::text[]))]]></udt_script>
+		</udt>
+	</schema>
+	<schema name="pg_catalog" catalogname="messeffect" />
 	<schema name="public" >
 		<table name="acao" >
 			<column name="id" type="bigserial" jt="-5" mandatory="y" />
@@ -29,10 +47,8 @@
 			<index name="pk_acao_permissao_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="idx_acao_id_unique" unique="UNIQUE" >
+			<index name="idx_acao_permissao" unique="UNIQUE" >
 				<column name="acao_id" />
-			</index>
-			<index name="idx_permissao_id_unique" unique="UNIQUE" >
 				<column name="permissao_id" />
 			</index>
 			<fk name="fk_acao_permissao_acao" to_schema="public" to_table="acao" delete_action="cascade" >
@@ -447,38 +463,21 @@
 			<column name="email_verified_at" type="timestamp" length="22" decimal="0" jt="93" />
 			<column name="password" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
 			<column name="remember_token" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="pessoa_id" type="integer" jt="4" />
+			<column name="imagem_id" type="bigint" jt="-5" />
 			<column name="created_at" type="timestamp" length="22" decimal="0" jt="93" />
 			<column name="updated_at" type="timestamp" length="22" decimal="0" jt="93" />
+			<column name="deleted_at" type="timestamp" jt="93" />
 			<index name="users_pkey" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
 			<index name="users_email_unique" unique="UNIQUE" >
 				<column name="email" options="ASC" />
 			</index>
-		</table>
-		<table name="usuario" >
-			<column name="id" type="bigserial" jt="-5" mandatory="y" />
-			<column name="email" type="varchar" length="40" jt="12" mandatory="y" />
-			<column name="password" type="varchar" length="60" jt="12" mandatory="y" />
-			<column name="nome" type="varchar" length="30" jt="12" mandatory="y" />
-			<column name="pessoa_id" type="integer" jt="4" />
-			<column name="imagem_id" type="bigint" jt="-5" />
-			<column name="created_at" type="timestamp" jt="93" />
-			<column name="updated_at" type="timestamp" jt="93" />
-			<column name="deleted_at" type="timestamp" jt="93" />
-			<index name="pk_usuario_id" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<index name="idx_usuario_unique" unique="UNIQUE" >
-				<column name="email" />
-			</index>
-			<index name="idx_usuario_pessoa_id" unique="UNIQUE" >
-				<column name="pessoa_id" />
-			</index>
-			<fk name="fk_usuario_imagem" to_schema="public" to_table="imagem" >
+			<fk name="fk_users_imagem" to_schema="public" to_table="imagem" delete_action="cascade" >
 				<fk_column name="imagem_id" pk="id" />
 			</fk>
-			<fk name="fk_usuario_pessoa" to_schema="public" to_table="pessoa" >
+			<fk name="fk_users_pessoa" to_schema="public" to_table="pessoa" >
 				<fk_column name="pessoa_id" pk="id" />
 			</fk>
 		</table>
@@ -498,11 +497,11 @@
 			<index name="idx_usuario_unique_id" unique="UNIQUE" >
 				<column name="usuario_id" />
 			</index>
-			<fk name="fk_usuario_acao_usuario" to_schema="public" to_table="usuario" delete_action="cascade" >
-				<fk_column name="usuario_id" pk="id" />
-			</fk>
 			<fk name="fk_usuario_acao_acao" to_schema="public" to_table="acao" >
 				<fk_column name="acao_id" pk="id" />
+			</fk>
+			<fk name="fk_usuario_acao_users" to_schema="public" to_table="users" >
+				<fk_column name="usuario_id" pk="id" />
 			</fk>
 		</table>
 		<sequence name="acao_id_seq" options="START WITH 1" />
@@ -565,19 +564,19 @@
 	</layout>
 	<layout name="OrdemDeCompra" id="Layout_ec2814" show_relation="columns" >
 		<entity schema="public" name="material" color="3986C1" x="48" y="48" />
-		<entity schema="public" name="estoque_local" color="3986C1" x="272" y="48" />
-		<entity schema="public" name="pessoa" color="3986C1" x="432" y="48" />
-		<entity schema="public" name="material_compra" color="C1D8EE" x="64" y="368" />
-		<entity schema="public" name="ordem_compra" color="C1D8EE" x="336" y="368" />
-		<entity schema="public" name="novo_material" color="C1D8EE" x="576" y="368" />
+		<entity schema="public" name="material_compra" color="C1D8EE" x="48" y="432" />
+		<entity schema="public" name="ordem_compra" color="C1D8EE" x="304" y="400" />
+		<entity schema="public" name="novo_material" color="C1D8EE" x="560" y="448" />
+		<entity schema="public" name="estoque_local" color="3986C1" x="320" y="48" />
+		<entity schema="public" name="pessoa" color="3986C1" x="496" y="48" />
 	</layout>
 	<layout name="Usuario" id="Layout_35216f4" show_relation="columns" >
-		<entity schema="public" name="pessoa" color="3986C1" x="48" y="48" />
-		<entity schema="public" name="imagem" color="3986C1" x="288" y="48" />
-		<entity schema="public" name="acao_permissao" color="C1D8EE" x="560" y="352" />
-		<entity schema="public" name="acao" color="C1D8EE" x="400" y="352" />
-		<entity schema="public" name="usuario_acao" color="C1D8EE" x="240" y="352" />
+		<entity schema="public" name="users" color="3986C1" x="48" y="256" />
+		<entity schema="public" name="pessoa" color="3986C1" x="48" y="560" />
+		<entity schema="public" name="usuario_acao" color="C1D8EE" x="48" y="48" />
+		<entity schema="public" name="acao" color="C1D8EE" x="208" y="48" />
 		<entity schema="public" name="permissao" color="C1D8EE" x="576" y="48" />
-		<entity schema="public" name="usuario" color="C1D8EE" x="48" y="352" />
+		<entity schema="public" name="imagem" color="3986C1" x="256" y="256" />
+		<entity schema="public" name="acao_permissao" color="C1D8EE" x="384" y="48" />
 	</layout>
 </project>

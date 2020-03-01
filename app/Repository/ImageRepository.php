@@ -5,10 +5,8 @@ namespace App\Repository;
 
 use Carbon\Carbon;
 use App\Models\Imagem;
-use App\Resources\SynchronizableResource;
 
-
-class ImageRepository extends BaseRepository implements SynchronizableResource
+class ImageRepository extends BaseRepository
 {
     protected $model;
 

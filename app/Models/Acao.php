@@ -6,7 +6,6 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Acao extends BaseModel
@@ -19,6 +18,10 @@ class Acao extends BaseModel
         'codigo',
         'descricao',
         'nome'
+    ];
+
+    protected $hidden = [
+        'pivot'
     ];
 
     protected $dates = [
@@ -39,6 +42,12 @@ class Acao extends BaseModel
     public function usuarioAcao()
     {
         return $this->hasMany('App\Models\UsuarioAcao', 'acao_id', 'id');
+    }
+
+    public function permissions(){
+        return $this->belongsToMany(
+            'App\Models\Permissao', 'acao_permissao', 'acao_id', 'permissao_id'
+        )->withTimestamps();
     }
 
 }

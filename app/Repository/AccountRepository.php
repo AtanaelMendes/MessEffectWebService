@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Repositories\BaseRepository;
 
 class AccountRepository extends BaseRepository
 {
@@ -13,7 +12,7 @@ class AccountRepository extends BaseRepository
 
     /**
      * AccountRepository constructor.
-     * @param Usuario $usuario
+     * @param User $user
      */
     public function __construct(User $user)
     {
